@@ -4,24 +4,34 @@ import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Embarque implements HandlerEtapa, IAreaObserver{
+public class Embarque implements HandlerEtapa, IAreaObserver {
+    private HandlerEtapa siguienteHandler;
 
     @Override
     public void update(OrdenDeCompra ordenDeCompra) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+        System.out.println("Embarque recibió una actualización del pedido #" + ordenDeCompra.getNumeroPedido());
+        if (ordenDeCompra.getAreaActual() instanceof Embarque) {
+            this.handle(ordenDeCompra);
+        }
     }
 
     @Override
     public void setNextHandler(HandlerEtapa handler) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setNextHandler'");
+        this.siguienteHandler = new Logistica();
     }
 
     @Override
     public void handle(OrdenDeCompra ordenDeCompra) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handle'");
+        System.out.println("Embarque está procesando el pedido #" + ordenDeCompra.getNumeroPedido());
+
+        // logica de embarque
+
+        if (siguienteHandler != null) {
+            System.out.println("Embarque pasa el pedido a la siguiente área");
+            ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler);
+            siguienteHandler.handle(ordenDeCompra);
+        } else {
+            System.out.println("Embarque finalizó el flujo de procesamiento para el pedido #" + ordenDeCompra.getNumeroPedido());
+        }
     }
-    
 }

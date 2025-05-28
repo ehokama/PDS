@@ -26,7 +26,7 @@ public abstract class Vehiculo {
         return (precio + calcularImpuestos() + calcularAdicionales() );
     }
 
-    private double calcularAdicionales() {
+    public double calcularAdicionales() {
         double total = 0;
         for (ConfiguracionAdicional configuracionAdicional : adicionales) {
             total+=configuracionAdicional.getPrecio();
