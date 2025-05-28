@@ -29,6 +29,9 @@ userButton.addEventListener('click', () => {
       window.location.href = '../configuracion/vendedor.html';
     } else if (tipoUsuario === 'admin') {
       window.location.href = '../configuracion/admin.html';
+    } else {
+      // fallback en caso de que no esté definido el tipo
+      window.location.href = '../configuracion/configuracion.html';
     }
   } else {
     window.location.href = '../login-register/login-register.html';
