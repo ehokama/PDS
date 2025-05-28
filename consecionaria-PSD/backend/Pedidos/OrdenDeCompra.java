@@ -3,6 +3,8 @@ package backend.Pedidos;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import backend.Areas.Consecionaria;
 import backend.Areas.DatosDeFacturacion;
 import backend.Areas.Ventas;
 import backend.Areas.PatronHandler.HandlerEtapa;
@@ -12,7 +14,7 @@ import backend.Estados.EstadoPedido;
 import backend.Estados.EstadoPosiblesPedido;
 import backend.MetodoDePago.MetodoDePago;
 import backend.Usuarios.Usuario;
-import backend.Vehiculos.Caracteristicas.Estado;
+import backend.Vehiculos.Caracteristicas.EstadoVehiculo;
 import backend.Vehiculos.TiposVehiculos.Vehiculo;
 
 public class OrdenDeCompra implements ISubject{
@@ -29,16 +31,12 @@ public class OrdenDeCompra implements ISubject{
     private Usuario vendedor;
     private int costoTotal;
     private String nombreConsecionaria;
-    private int cuitConsecionaria;
+    private String cuitConsecionaria;
     private HandlerEtapa primerHandler;
 
     //constructor (tiene en cuenta los valores que se cargan automaticamente: costototal)
-    public OrdenDeCompra(int numeroPedido, Usuario usuario, Vehiculo vehiculo, 
-                     IAreaObserver areaActual, DatosDeFacturacion facturacion, 
-                     MetodoDePago metodoDePago, Usuario vendedor,
-                     String nombreConsecionaria, int cuitConsecionaria,
-                     HandlerEtapa primerHandler) {
-
+    public OrdenDeCompra(int numeroPedido, Usuario usuario, Vehiculo vehiculo, DatosDeFacturacion facturacion, 
+                     MetodoDePago metodoDePago, Usuario vendedor) {
     this.numeroPedido = numeroPedido;
     this.usuario = usuario;
     this.vehiculo = vehiculo;
@@ -46,9 +44,9 @@ public class OrdenDeCompra implements ISubject{
     this.facturacion = facturacion;
     this.metodoDePago = metodoDePago;
     this.vendedor = vendedor;
-    this.nombreConsecionaria = nombreConsecionaria;
-    this.cuitConsecionaria = cuitConsecionaria;
-    this.primerHandler = primerHandler;
+    this.nombreConsecionaria = Consecionaria.getNombre();
+    this.cuitConsecionaria = Consecionaria.getCuit();
+    this.primerHandler = Ventas.getInstancia();
 
     this.fechaCreacion = new Date(System.currentTimeMillis());
     this.historialDeEstados = new ArrayList<>();
@@ -218,11 +216,11 @@ public class OrdenDeCompra implements ISubject{
         this.nombreConsecionaria = nombreConsecionaria;
     }
 
-    public int getCuitConsecionaria() {
+    public String getCuitConsecionaria() {
         return cuitConsecionaria;
     }
 
-    public void setCuitConsecionaria(int cuitConsecionaria) {
+    public void setCuitConsecionaria(String cuitConsecionaria) {
         this.cuitConsecionaria = cuitConsecionaria;
     }
 

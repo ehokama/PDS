@@ -6,6 +6,14 @@ public class DatosDeFacturacion{
     private String cuit;
     private String direccion;
 
+    
+
+    public DatosDeFacturacion(String nombre, String cuit, String direccion) { //se debería ingresar cuando se quiere reservar el pedido
+        this.nombre = nombre;
+        this.cuit = cuit;
+        this.direccion = direccion;
+    }
+
     public String getNombre() {
         return nombre;
     }

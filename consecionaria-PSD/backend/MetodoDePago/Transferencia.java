@@ -3,7 +3,7 @@ package backend.MetodoDePago;
 public class Transferencia extends MetodoDePago{
 
 
-    public Transferencia(String descripcion, String nombre) {
+    public Transferencia() {
         super("Transferencia bancaria","Transferencia");
     }
     

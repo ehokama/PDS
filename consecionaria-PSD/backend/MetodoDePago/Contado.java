@@ -2,7 +2,7 @@ package backend.MetodoDePago;
 
 public class Contado extends MetodoDePago{
     
-    public Contado(String descripcion, String nombre){
+    public Contado(){
         super("Pago en efectivo","Efectivo-Contado");
     }
 

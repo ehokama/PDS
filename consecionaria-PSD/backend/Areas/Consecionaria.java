@@ -1,13 +1,13 @@
 package backend.Areas;
 
 public class Consecionaria {
-    private String nombre = "MDMotors";
-    private String cuit = "25-42345765-5";
+    private static String nombre = "MDMotors";
+    private static String cuit = "25-42345765-5";
 
-    public String getNombre() {
+    public static String getNombre() {
         return nombre;
     }
-    public String getCuit() {
+    public static String getCuit() {
         return cuit;
     }
 

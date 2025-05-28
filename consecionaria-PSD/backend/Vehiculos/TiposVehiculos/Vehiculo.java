@@ -4,21 +4,22 @@ import java.util.List;
 
 import backend.Vehiculos.Caracteristicas.Color;
 import backend.Vehiculos.Caracteristicas.ConfiguracionAdicional;
-import backend.Vehiculos.Caracteristicas.Estado;
+import backend.Vehiculos.Caracteristicas.EstadoVehiculo;
 
 public abstract class Vehiculo {
     private String marca;
     private String modelo;
     private int año;
     private Color color;
-    private int patente;
+    private String patente;
     private int numeroChasis;
     private int numeroMotor;
     private int asientos;
     private double precio;
     private boolean disponible;
     private List<ConfiguracionAdicional> adicionales;
-    private Estado estado;
+    private EstadoVehiculo estado;
+    private int kilometraje; 
 
     public abstract double calcularImpuestos();
 
@@ -75,11 +76,11 @@ public abstract class Vehiculo {
         this.color = color;
     }
 
-    public int getPatente() {
+    public String getPatente() {
         return patente;
     }
 
-    public void setPatente(int patente) {
+    public void setPatente(String patente) {
         this.patente = patente;
     }
 
@@ -131,12 +132,24 @@ public abstract class Vehiculo {
         this.adicionales = adicionales;
     }
 
-    public Estado getEstado() {
+    public EstadoVehiculo getEstado() {
         return estado;
     }
 
-    public void setEstado(Estado estado) {
+    public void setEstadoVehiculo(EstadoVehiculo estado) {
         this.estado = estado;
+    }
+
+    public void setEstado(EstadoVehiculo estado) {
+        this.estado = estado;
+    }
+
+    public int getKilometraje() {
+        return kilometraje;
+    }
+
+    public void setKilometraje(int kilometraje) {
+        this.kilometraje = kilometraje;
     }
 
     

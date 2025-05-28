@@ -4,8 +4,9 @@ public class GarantiaExtendida extends ConfiguracionAdicional{
 
     private int duracionMeses;
 
-    public GarantiaExtendida(String nombre, String descripcion, double precio) {
+    public GarantiaExtendida(String nombre, String descripcion, double precio, int duracionMeses) {
         super(nombre, descripcion, precio);
+        this.duracionMeses = duracionMeses;
     }
 
     public int getDuracionMeses() {

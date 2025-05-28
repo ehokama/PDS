@@ -4,7 +4,7 @@ import java.util.List;
 
 import backend.Vehiculos.Caracteristicas.Color;
 import backend.Vehiculos.Caracteristicas.ConfiguracionAdicional;
-import backend.Vehiculos.Caracteristicas.Estado;
+import backend.Vehiculos.Caracteristicas.EstadoVehiculo;
 import backend.Vehiculos.TiposVehiculos.Auto;
 import backend.Vehiculos.TiposVehiculos.Vehiculo;
 
@@ -13,14 +13,16 @@ public class AutoBuilder implements VehiculoBuilder {
     private String modelo;
     private int año;
     private Color color;
-    private int patente;
+    private String patente;
     private int numeroChasis;
     private int numeroMotor;
     private int asientos;
     private double precio;
     private boolean disponible;
     private List<ConfiguracionAdicional> adicionales;
-    private Estado estado;
+    private EstadoVehiculo estado;
+    private int kilometraje;
+
   @Override
     public VehiculoBuilder  setMarca(String marca) {
         this.marca = marca;
@@ -46,7 +48,7 @@ public class AutoBuilder implements VehiculoBuilder {
     }
 
     @Override
-    public VehiculoBuilder  setPatente(int patente) {
+    public VehiculoBuilder  setPatente(String patente) {
         this.patente = patente;
         return this;
     }
@@ -82,15 +84,27 @@ public class AutoBuilder implements VehiculoBuilder {
     }
 
     @Override
-    public VehiculoBuilder  setEstado(Estado estado) {
+    public VehiculoBuilder  setEstado(EstadoVehiculo estado) {
         this.estado = estado;
         return this;
     }
 
+    @Override
+    public VehiculoBuilder setAdicionales(List<ConfiguracionAdicional> configuracionAdicional) {
+        this.adicionales = configuracionAdicional;
+        return this;
+    }
+
+    @Override
+    public VehiculoBuilder setKilometraje(int km) {
+        this.kilometraje = km;
+        return this;
+    }
 
     @Override
     public Vehiculo build() {
-        return new Auto(marca, modelo, año, color, patente, numeroChasis, numeroMotor, asientos, precio, disponible, adicionales, estado);
+        return new Auto(marca, modelo, año, color, patente, numeroChasis, numeroMotor, asientos, precio, disponible, adicionales, estado, kilometraje);
     }
+
 
 }

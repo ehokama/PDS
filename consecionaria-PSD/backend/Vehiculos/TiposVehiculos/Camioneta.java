@@ -4,13 +4,13 @@ import java.util.List;
 
 import backend.Vehiculos.Caracteristicas.Color;
 import backend.Vehiculos.Caracteristicas.ConfiguracionAdicional;
-import backend.Vehiculos.Caracteristicas.Estado;
+import backend.Vehiculos.Caracteristicas.EstadoVehiculo;
 
 public class Camioneta extends Vehiculo {
 
-    public Camioneta(String marca, String modelo, int año, Color color, int patente, int numeroChasis,
+    public Camioneta(String marca, String modelo, int año, Color color, String patente, int numeroChasis,
                 int numeroMotor, int asientos, double precio, boolean disponible,
-                List<ConfiguracionAdicional> adicionales, Estado estado) {
+                List<ConfiguracionAdicional> adicionales, EstadoVehiculo estado, int kilometraje) {
         super.setMarca(marca);
         super.setModelo(modelo);
         super.setAño(año);
@@ -22,7 +22,7 @@ public class Camioneta extends Vehiculo {
         super.setPrecio(precio);
         super.setDisponible(disponible);
         super.setAdicionales(adicionales);
-        super.setEstado(estado);
+        super.setEstadoVehiculo(estado);
     }
     @Override
     public double calcularImpuestos() {
