@@ -12,4 +12,14 @@ public class HistorialEstados {
     public List<EstadoPedido> getEstadoPedidos(){
         return historial;
     }
+
+    public void mostrarHistorialDeEstados() {
+        for (EstadoPedido ep : historial) {
+            System.out.println("Estado: " + ep.getEstado() + 
+                               ", Inicio: " + ep.getFechaInicio() +
+                               ", Fin: " + ep.getFechaFinalizacion() + 
+                               ", Área: " + ep.getAreaResponsable().getClass().getSimpleName());
+        }
+    }
+
 }

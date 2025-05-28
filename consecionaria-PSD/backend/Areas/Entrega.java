@@ -5,6 +5,7 @@ import backend.Areas.PatronIObserver.IAreaObserver;
 import backend.Pedidos.OrdenDeCompra;
 
 public class Entrega implements HandlerEtapa, IAreaObserver {
+    private static Entrega instancia = null;
     private HandlerEtapa siguienteHandler;
 
     @Override
@@ -17,7 +18,7 @@ public class Entrega implements HandlerEtapa, IAreaObserver {
 
     @Override
     public void setNextHandler(HandlerEtapa handler) {
-        this.siguienteHandler = new Seguimiento();
+        this.siguienteHandler = Seguimiento.getInstancia();
     }
 
     @Override
@@ -31,5 +32,13 @@ public class Entrega implements HandlerEtapa, IAreaObserver {
         } else {
             System.out.println("Entrega finalizó el flujo de procesamiento para el pedido #" + ordenDeCompra.getNumeroPedido());
         }
+    }
+
+    // Método estático para obtener la instancia
+    public static Entrega getInstancia() {
+        if (instancia == null) {
+            instancia = new Entrega();
+        }
+        return instancia;
     }
 }

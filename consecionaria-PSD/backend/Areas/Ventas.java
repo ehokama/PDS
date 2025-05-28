@@ -5,12 +5,12 @@ import backend.Areas.PatronIObserver.IAreaObserver;
 import backend.Pedidos.OrdenDeCompra;
 
 public class Ventas implements HandlerEtapa, IAreaObserver {
-    
+    private static Ventas instancia = null;
     private HandlerEtapa siguienteHandler;
 
 
-    public Ventas() {
-        this.siguienteHandler = new Cobranzas(); // por defecto la proxima area es cobranzas
+    private Ventas() {
+        this.siguienteHandler = Cobranzas.getInstancia(); // por defecto la proxima area es cobranzas
     }
 
     @Override
@@ -35,5 +35,13 @@ public class Ventas implements HandlerEtapa, IAreaObserver {
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler); // actualizo el area casteando
             siguienteHandler.handle(ordenDeCompra); // se continua la cadena
         }
+    }
+
+    // Método estático para obtener la instancia
+    public static Ventas getInstancia() {
+        if (instancia == null) {
+            instancia = new Ventas();
+        }
+        return instancia;
     }
 }

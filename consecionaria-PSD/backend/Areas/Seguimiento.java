@@ -5,6 +5,7 @@ import backend.Areas.PatronIObserver.IAreaObserver;
 import backend.Pedidos.OrdenDeCompra;
 
 public class Seguimiento implements HandlerEtapa, IAreaObserver {
+    private static Seguimiento instancia = null;
     private HandlerEtapa siguienteHandler; // En este caso, probablemente siempre sera null
 
     @Override
@@ -34,5 +35,12 @@ public class Seguimiento implements HandlerEtapa, IAreaObserver {
         } else {
             System.out.println("Seguimiento finalizó el flujo de procesamiento para el pedido #" + ordenDeCompra.getNumeroPedido());
         }
+    }
+    // Método estático para obtener la instancia
+    public static Seguimiento getInstancia() {
+        if (instancia == null) {
+            instancia = new Seguimiento();
+        }
+        return instancia;
     }
 }

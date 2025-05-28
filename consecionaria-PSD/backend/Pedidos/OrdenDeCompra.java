@@ -1,16 +1,18 @@
 package backend.Pedidos;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
-
 import backend.Areas.DatosDeFacturacion;
 import backend.Areas.Ventas;
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
 import backend.Areas.PatronIObserver.ISubject;
 import backend.Estados.EstadoPedido;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.MetodoDePago.MetodoDePago;
 import backend.Usuarios.Usuario;
+import backend.Vehiculos.Caracteristicas.Estado;
 import backend.Vehiculos.TiposVehiculos.Vehiculo;
 
 public class OrdenDeCompra implements ISubject{
@@ -30,8 +32,60 @@ public class OrdenDeCompra implements ISubject{
     private int cuitConsecionaria;
     private HandlerEtapa primerHandler;
 
-    public void cambiarEstado(){
+    //constructor (tiene en cuenta los valores que se cargan automaticamente: costototal)
+    public OrdenDeCompra(int numeroPedido, Usuario usuario, Vehiculo vehiculo, 
+                     IAreaObserver areaActual, DatosDeFacturacion facturacion, 
+                     MetodoDePago metodoDePago, Usuario vendedor,
+                     String nombreConsecionaria, int cuitConsecionaria,
+                     HandlerEtapa primerHandler) {
 
+    this.numeroPedido = numeroPedido;
+    this.usuario = usuario;
+    this.vehiculo = vehiculo;
+    this.areaActual = Ventas.getInstancia();
+    this.facturacion = facturacion;
+    this.metodoDePago = metodoDePago;
+    this.vendedor = vendedor;
+    this.nombreConsecionaria = nombreConsecionaria;
+    this.cuitConsecionaria = cuitConsecionaria;
+    this.primerHandler = primerHandler;
+
+    this.fechaCreacion = new Date(System.currentTimeMillis());
+    this.historialDeEstados = new ArrayList<>();
+    this.observadores = new ArrayList<>();
+    
+    // Crear estado inicial
+    EstadoPedido estadoInicial = new EstadoPedido();
+    estadoInicial.setEstado(backend.Estados.EstadoPosiblesPedido.PENDIENTE);
+    estadoInicial.setFechaInicio(this.fechaCreacion);
+    estadoInicial.setAreaResponsable(areaActual);
+
+    this.estado = estadoInicial;
+    this.historialDeEstados.add(estadoInicial);
+
+    // Calcular costo inicial
+    this.costoTotal = (int) this.calcularCostoTotal();
+    }
+
+
+    public void cambiarEstado(EstadoPosiblesPedido nuevoEstado) {
+        // Finalizar el estado anterior si existe
+        if (this.estado != null) {
+            this.estado.setFechaFinalizacion(new Date(System.currentTimeMillis()));
+        }
+
+        // Crear nuevo estado
+        EstadoPedido nuevoEstadoPedido = new EstadoPedido();
+        nuevoEstadoPedido.setEstado(nuevoEstado);
+        nuevoEstadoPedido.setFechaInicio(new Date(System.currentTimeMillis()));
+        nuevoEstadoPedido.setAreaResponsable(this.areaActual); // el área que lo tiene asignado
+
+        // Actualizar estado actual y el historial
+        this.estado = nuevoEstadoPedido;
+        this.historialDeEstados.add(nuevoEstadoPedido);
+
+        // Notificar a los observadores
+        notificar();
     }
 
     public void notificar(){
@@ -51,14 +105,13 @@ public class OrdenDeCompra implements ISubject{
 
     @Override
     public void registrar(IAreaObserver observer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'registrar'");
+        observadores.add(observer);
     }
 
     @Override
     public void eliminar(IAreaObserver observer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminar'");
+        observadores.remove(observer);
+
     }
 
     public int getNumeroPedido() {
