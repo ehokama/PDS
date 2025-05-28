@@ -2,9 +2,10 @@ package backend.Areas;
 
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Embarque implements HandlerEtapa, IAreaObserver {
+public class Embarque extends Area implements HandlerEtapa, IAreaObserver{
     private static Embarque instancia = null;
     private HandlerEtapa siguienteHandler;
 
@@ -14,6 +15,10 @@ public class Embarque implements HandlerEtapa, IAreaObserver {
         if (ordenDeCompra.getAreaActual() instanceof Embarque) {
             this.handle(ordenDeCompra);
         }
+    }
+
+    public Embarque() {
+        setNombre("Embarque");
     }
 
     @Override
@@ -28,6 +33,7 @@ public class Embarque implements HandlerEtapa, IAreaObserver {
         // logica de embarque
 
         if (siguienteHandler != null) {
+            ordenDeCompra.setEstadoDelPedido(EstadoPosiblesPedido.FINALIZADO);
             System.out.println("Embarque pasa el pedido a la siguiente área");
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler);
             siguienteHandler.handle(ordenDeCompra);

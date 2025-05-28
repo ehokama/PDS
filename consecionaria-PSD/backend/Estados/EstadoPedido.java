@@ -5,14 +5,15 @@ import java.sql.Date;
 import backend.Areas.PatronIObserver.IAreaObserver;
 
 public class EstadoPedido {
-    private EstadoPosiblesPedido estado;
+    private EstadoPosiblesPedido estado = EstadoPosiblesPedido.PENDIENTE; // valor por defecto
     private Date fechaInicio;
     private Date fechaFinalizacion;
     private IAreaObserver areaResponsable;
+
     public EstadoPosiblesPedido getEstado() {
         return estado;
     }
-    public void setEstado(EstadoPosiblesPedido estado) {
+    public void setEstadoPosible(EstadoPosiblesPedido estado) {
         this.estado = estado;
     }
     public Date getFechaInicio() {

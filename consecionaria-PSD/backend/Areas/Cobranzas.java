@@ -2,9 +2,10 @@ package backend.Areas;
 
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Cobranzas implements HandlerEtapa, IAreaObserver {
+public class Cobranzas extends Area implements HandlerEtapa, IAreaObserver {
     private static Cobranzas instancia = null;
     private HandlerEtapa siguienteHandler;
 
@@ -14,6 +15,10 @@ public class Cobranzas implements HandlerEtapa, IAreaObserver {
         if (ordenDeCompra.getAreaActual() instanceof Cobranzas) {
             this.handle(ordenDeCompra);
         }
+    }
+
+    public Cobranzas() {
+        setNombre("Cobranzas");
     }
 
     @Override
@@ -27,6 +32,7 @@ public class Cobranzas implements HandlerEtapa, IAreaObserver {
         // logica de procesamiento...
         // Si hay un sig handler se pasa el pedido
         if (siguienteHandler != null) {
+            ordenDeCompra.setEstadoDelPedido(EstadoPosiblesPedido.FINALIZADO);
             System.out.println("Cobranzas pasa el pedido a la siguiente área");
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler); 
             siguienteHandler.handle(ordenDeCompra); 
@@ -34,6 +40,8 @@ public class Cobranzas implements HandlerEtapa, IAreaObserver {
             System.out.println("Cobranzas finalizó el flujo de procesamiento para el pedido #" + ordenDeCompra.getNumeroPedido());
         }
     }
+
+
 
     // Método estático para obtener la instancia
     public static Cobranzas getInstancia() {

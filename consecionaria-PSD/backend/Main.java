@@ -9,23 +9,18 @@ import backend.Vehiculos.Caracteristicas.EquipamentoExtra;
 import backend.Vehiculos.Caracteristicas.EstadoVehiculo;
 import backend.Vehiculos.Caracteristicas.GarantiaExtendida;
 import backend.Vehiculos.PatronBuilder.AutoBuilder;
-import backend.Vehiculos.TiposVehiculos.Auto;
 import backend.Vehiculos.TiposVehiculos.Vehiculo;
 import backend.Usuarios.Usuario;
 import backend.Usuarios.Vendedor;
-import backend.Areas.Consecionaria;
 import backend.Areas.DatosDeFacturacion;
-import backend.Areas.Ventas;
-import backend.Estados.*;
-import backend.MetodoDePago.MetodoDePago;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.MetodoDePago.Tarjeta;
-import backend.MetodoDePago.Transferencia;
 import backend.Pedidos.OrdenDeCompra;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Handler;
 
+// prueba para ver que toda la logica funciona correctamente antes de conectarlo con el front 
 
 public class Main {
     public static void main(String[] args) {
@@ -56,7 +51,17 @@ public class Main {
 
         OrdenDeCompra orden1 = new OrdenDeCompra(0, juancito, auto1, datos1, new Tarjeta(), franco);
 
-        
+
+        System.out.println(orden1.getAreaActual().getNombre());
+        System.out.println(orden1.getEstado().getEstado());
+        System.out.println(orden1.getEstado().getFechaFinalizacion());
+        System.out.println(orden1.getEstado().getFechaInicio());
+
+        orden1.cambiarEstado(EstadoPosiblesPedido.FINALIZADO);
+
+        System.out.println(orden1.getEstado().getEstado());
+
+
 
     }
 }

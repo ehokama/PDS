@@ -2,10 +2,17 @@ package backend.Pedidos;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import backend.Areas.Cobranzas;
 import backend.Areas.Consecionaria;
 import backend.Areas.DatosDeFacturacion;
+import backend.Areas.Embarque;
+import backend.Areas.Entrega;
+import backend.Areas.Impuestos;
+import backend.Areas.Logistica;
+import backend.Areas.Seguimiento;
 import backend.Areas.Ventas;
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
@@ -32,7 +39,7 @@ public class OrdenDeCompra implements ISubject{
     private int costoTotal;
     private String nombreConsecionaria;
     private String cuitConsecionaria;
-    private HandlerEtapa primerHandler;
+    private HandlerEtapa handler;
 
     //constructor (tiene en cuenta los valores que se cargan automaticamente: costototal)
     public OrdenDeCompra(int numeroPedido, Usuario usuario, Vehiculo vehiculo, DatosDeFacturacion facturacion, 
@@ -46,15 +53,15 @@ public class OrdenDeCompra implements ISubject{
     this.vendedor = vendedor;
     this.nombreConsecionaria = Consecionaria.getNombre();
     this.cuitConsecionaria = Consecionaria.getCuit();
-    this.primerHandler = Ventas.getInstancia();
+    this.handler = Ventas.getInstancia();
 
     this.fechaCreacion = new Date(System.currentTimeMillis());
     this.historialDeEstados = new ArrayList<>();
-    this.observadores = new ArrayList<>();
+    this.observadores = Arrays.asList(Ventas.getInstancia(), Cobranzas.getInstancia(), Impuestos.getInstancia(),Embarque.getInstancia(),Logistica.getInstancia(), Entrega.getInstancia(), Seguimiento.getInstancia());
     
     // Crear estado inicial
     EstadoPedido estadoInicial = new EstadoPedido();
-    estadoInicial.setEstado(backend.Estados.EstadoPosiblesPedido.PENDIENTE);
+    estadoInicial.setEstadoPosible(backend.Estados.EstadoPosiblesPedido.PENDIENTE);
     estadoInicial.setFechaInicio(this.fechaCreacion);
     estadoInicial.setAreaResponsable(areaActual);
 
@@ -74,7 +81,7 @@ public class OrdenDeCompra implements ISubject{
 
         // Crear nuevo estado
         EstadoPedido nuevoEstadoPedido = new EstadoPedido();
-        nuevoEstadoPedido.setEstado(nuevoEstado);
+        nuevoEstadoPedido.setEstadoPosible(nuevoEstado);
         nuevoEstadoPedido.setFechaInicio(new Date(System.currentTimeMillis()));
         nuevoEstadoPedido.setAreaResponsable(this.areaActual); // el área que lo tiene asignado
 
@@ -168,6 +175,7 @@ public class OrdenDeCompra implements ISubject{
         this.estado = estado;
     }
 
+
     public MetodoDePago getMetodoDePago() {
         return metodoDePago;
     }
@@ -224,15 +232,16 @@ public class OrdenDeCompra implements ISubject{
         this.cuitConsecionaria = cuitConsecionaria;
     }
 
-    public HandlerEtapa getPrimerHandler() {
-        return primerHandler;
+    public HandlerEtapa getHandler() {
+        return handler;
     }
 
     public void setPrimerHandler(HandlerEtapa primerHandler) {
-        this.primerHandler = primerHandler;
+        this.handler = primerHandler;
     }
 
-    //getters y setters
-    
+    public void setEstadoDelPedido(EstadoPosiblesPedido estado){
+        this.estado.setEstadoPosible(estado);
+    }    
 
 }

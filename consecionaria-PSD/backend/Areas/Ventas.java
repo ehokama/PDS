@@ -2,16 +2,18 @@ package backend.Areas;
 
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Ventas implements HandlerEtapa, IAreaObserver {
+public class Ventas extends Area implements HandlerEtapa, IAreaObserver {
     private static Ventas instancia = null;
     private HandlerEtapa siguienteHandler;
 
 
-    private Ventas() {
-        this.siguienteHandler = Cobranzas.getInstancia(); // por defecto la proxima area es cobranzas
+    public Ventas() {
+        setNombre("Ventas");
     }
+
 
     @Override
     public void update(OrdenDeCompra ordenDeCompra) {
@@ -21,10 +23,13 @@ public class Ventas implements HandlerEtapa, IAreaObserver {
         }
     }
 
+
+
     @Override
     public void setNextHandler(HandlerEtapa handler) {
         this.siguienteHandler = handler;
     }
+
 
     @Override
     public void handle(OrdenDeCompra ordenDeCompra) {
@@ -32,6 +37,7 @@ public class Ventas implements HandlerEtapa, IAreaObserver {
         // Aca iria la logica, validaciones, etc
         // Dsp, se pasa al siguiente handler en la cadena
         if (siguienteHandler != null) {
+            ordenDeCompra.setEstadoDelPedido(EstadoPosiblesPedido.FINALIZADO);
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler); // actualizo el area casteando
             siguienteHandler.handle(ordenDeCompra); // se continua la cadena
         }

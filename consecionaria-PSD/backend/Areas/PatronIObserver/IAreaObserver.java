@@ -4,4 +4,5 @@ import backend.Pedidos.OrdenDeCompra;
 
 public interface IAreaObserver {
     void update(OrdenDeCompra ordenDeCompra);
+    String getNombre();
 }

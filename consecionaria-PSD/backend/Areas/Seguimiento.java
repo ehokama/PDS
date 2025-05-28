@@ -2,9 +2,11 @@ package backend.Areas;
 
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
+import backend.Estados.EstadoPedido;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Seguimiento implements HandlerEtapa, IAreaObserver {
+public class Seguimiento extends Area implements HandlerEtapa, IAreaObserver {
     private static Seguimiento instancia = null;
     private HandlerEtapa siguienteHandler; // En este caso, probablemente siempre sera null
 
@@ -16,11 +18,16 @@ public class Seguimiento implements HandlerEtapa, IAreaObserver {
         }
     }
 
+    public Seguimiento() {
+        setNombre("Seguimiento");
+    }
+
     @Override
     public void setNextHandler(HandlerEtapa handler) {
         // No hay siguiente etapa porque es la última
         this.siguienteHandler = null;
     }
+
 
     @Override
     public void handle(OrdenDeCompra ordenDeCompra) {
@@ -29,6 +36,7 @@ public class Seguimiento implements HandlerEtapa, IAreaObserver {
         // logica
 
         if (siguienteHandler != null) {
+            ordenDeCompra.setEstadoDelPedido(EstadoPosiblesPedido.FINALIZADO);
             // En este caso no deberia entrar nunca
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler);
             siguienteHandler.handle(ordenDeCompra);

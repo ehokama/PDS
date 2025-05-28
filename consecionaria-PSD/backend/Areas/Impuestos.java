@@ -2,9 +2,10 @@ package backend.Areas;
 
 import backend.Areas.PatronHandler.HandlerEtapa;
 import backend.Areas.PatronIObserver.IAreaObserver;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.Pedidos.OrdenDeCompra;
 
-public class Impuestos implements HandlerEtapa, IAreaObserver {
+public class Impuestos extends Area implements HandlerEtapa, IAreaObserver {
     private static Impuestos instancia = null;
     private HandlerEtapa siguienteHandler;
 
@@ -21,6 +22,11 @@ public class Impuestos implements HandlerEtapa, IAreaObserver {
         this.siguienteHandler = Embarque.getInstancia();
     }
 
+    public Impuestos() {
+        setNombre("Impuestos");
+
+    }
+    
     @Override
     public void handle(OrdenDeCompra ordenDeCompra) {
         System.out.println("Impuestos está procesando el pedido #" + ordenDeCompra.getNumeroPedido());
@@ -28,6 +34,7 @@ public class Impuestos implements HandlerEtapa, IAreaObserver {
         // logica para calculos
 
         if (siguienteHandler != null) {
+            ordenDeCompra.setEstadoDelPedido(EstadoPosiblesPedido.FINALIZADO);
             System.out.println("Impuestos pasa el pedido a la siguiente área");
             ordenDeCompra.setAreaActual((IAreaObserver) siguienteHandler); 
             siguienteHandler.handle(ordenDeCompra); 
