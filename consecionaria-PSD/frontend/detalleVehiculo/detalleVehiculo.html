@@ -14,7 +14,7 @@
   </a>
           <a href="../login-register/login-register.html">
               <button class="user-button">
-                  <img class="user-logo" src="img/user.png" alt="Usuario" />
+                  <img class="user-logo" src="../img/user.png" alt="Usuario" />
               </button>
           </a>
       </div>
@@ -27,7 +27,7 @@
         <div class="columnaIzq">
 
           <div class="contenedorFoto">
-              <img class="foto" src="img/corolla.png" />
+              <img class="foto" src="../img/corolla.png" />
           </div>
 
           
@@ -48,18 +48,26 @@
 
         <div>
             <h2>Garantia Extendida:</h2>
-              <label for="miSelect">Seleccioná una opción (Predeterminada es de 3 meses):</label>
+              <label for="miSelect">Seleccioná una opción (Predeterminada es de 0 meses):</label>
               <select id="miSelect" name="miSelect">
-                <option value="opcion1">Garantia Plata (6 meses)</option>
-                <option value="opcion2">Garantia Oro (9 meses)</option>
-                <option value="opcion3">Garantia Platino (12 meses)</option>
+                    <option value="opcion0">Sin Garantia (0 meses): $0</option>
+                    <option value="opcion1">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
+                    <option value="opcion2">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
+                    <option value="opcion3">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
               </select>
         </div>
 
         <div>
-            <h2>Contacto</h2>
-            <p>Consultá el informe con todos los detalles del estado del auto.</p>
-            <button>Consultar informe</button>
+            <h2>Equipamiento Extra:</h2>
+            <p>Sensor y Camara: Asistencia de estacionamiento</p>
+            <p>AppleCarPlay y AndroidAuto: Tecnología</p>
+            <p>Aire Acondicionado: Confort
+        </div>
+
+        <div class="accesorios">
+          <h2>Accesorios</h2>
+          <label><input type="checkbox" name="accesorio" value="polarizado"> Vidrios polarizados</label>
+          <label><input type="checkbox" name="accesorio" value="portaequipaje_techo"> Portaequipaje de techo</label>
         </div>
 
       </div>
@@ -78,14 +86,14 @@
 
   </section> 
 
-
-
     <footer>
         <section>
             <a href="https://www.instagram.com/mdmotors24/">Contactame aqui !</a>
         </section>
         <p>Copyright 2025</p>
     </footer>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
