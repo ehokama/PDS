@@ -1,4 +1,4 @@
-package backend.Areas;
+package backend.Areas.PatronIObserver;
 
 import backend.Pedidos.OrdenDeCompra;
 

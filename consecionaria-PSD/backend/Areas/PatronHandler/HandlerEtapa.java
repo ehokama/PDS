@@ -1,4 +1,4 @@
-package backend.Areas;
+package backend.Areas.PatronHandler;
 
 import backend.Pedidos.OrdenDeCompra;
 
