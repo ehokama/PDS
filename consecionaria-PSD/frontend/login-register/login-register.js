@@ -47,7 +47,7 @@ loginForm.addEventListener('submit', (e) => {
   if (email && password) {
     localStorage.setItem('usuarioLogueado', 'true');
     alert('¡Inicio de sesión exitoso!');
-    window.location.href = '../home/homeUser.html'; // Redireccioná a la página del usuario logueado
+    window.location.href = '../home/homeGuest.html'; // Redireccioná a la página del usuario logueado
   } else {
     alert('Por favor completá todos los campos');
   }

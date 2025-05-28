@@ -45,16 +45,28 @@
             <p>Asientos: 5</p>
             <p>Color: Gris</p>
         </div>
-
         <div>
-            <h2>Garantia Extendida:</h2>
-              <label for="miSelect">Seleccioná una opción (Predeterminada es de 0 meses):</label>
-              <select id="miSelect" name="miSelect">
-                    <option value="opcion0">Sin Garantia (0 meses): $0</option>
-                    <option value="opcion1">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
-                    <option value="opcion2">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
-                    <option value="opcion3">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
-              </select>
+          <h2>Garantía Extendida:</h2>
+          <label for="miSelectGarantia">Seleccioná una opción (Predeterminada es de 0 meses):</label>
+          <select id="miSelectGarantia" name="miSelectGarantia">
+            <option value="opcion0">Sin Garantía (0 meses): $0</option>
+            <option value="opcion1">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
+            <option value="opcion2">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
+            <option value="opcion3">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
+          </select>
+          <p id="mensajeGarantia"></p>  <!-- Para mostrar el mensaje -->
+        </div>
+
+        <!-- Parte Método de Pago -->
+        <div>
+          <h2>Método de pago:</h2>
+          <label for="miSelectMetodoDePago">Seleccioná una opción (Predeterminada es Contado):</label>
+          <select id="miSelectMetodoDePago" name="miSelectMetodoDePago">
+            <option value="opcion1">Contado</option>
+            <option value="opcion2">Transferencia</option>
+            <option value="opcion3">Tarjeta de Crédito</option>     
+          </select>
+          <p id="mensajeMetodoPago"></p>  <!-- Para mostrar el mensaje -->
         </div>
 
         <div>
@@ -80,7 +92,7 @@
               <hr>
               <p>Precio contado: <strong>$25.150.000</strong></p>
               <hr>
-              <button class="btn">Reservar</button>
+              <button class="btn">Confirmar</button>
           </div>
       </div>
 
@@ -93,7 +105,16 @@
         <p>Copyright 2025</p>
     </footer>
 
-    <script src="script.js"></script>
+    <div id="compraExitosa" class="popup" style="display:none;">
+      <div class="overlay"></div>
+      <div class="popup-content">
+        <p>Su compra ha sido confirmada exitosamente</p>
+        <button onclick="location.href='../login-register/login-register.html'">Aceptar</button>
+      </div>
+    </div>
+    
+
+    <script src="detalleVehiculo.js"></script>
 
 </body>
 </html>

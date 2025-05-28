@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<head>
+    <meta charset="UTF-8">
+    <title>Mi sitio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="perfil.css" />
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+          <a href="../home/homeGuest.html" id="titulo" style="text-decoration: none; color: inherit;">
+        <h1>MD Motors</h1>
+    </a>
+            <a href="../login-register/login-register.html">
+                <button class="user-button">
+                    <img class="user-logo" src="../img/user.png" alt="Usuario" />
+                </button>
+            </a>
+        </div>
+    </header>
+
+
+    <section class="container">
+
+        <h2>Concesionaria</h2>
+
+        <div class="tabs">
+          <div class="tab active" id="tab-login">Iniciar Sesión</div>
+          <div class="tab" id="tab-register">Registrarse</div>
+        </div>
+
+        <!-- Formulario de login-->
+        <form id="login-form" class="active" novalidate>
+            <label for="login-email">Correo Electrónico</label>
+            <input type="email" id="login-email" name="login-email" required placeholder="tuemail@ejemplo.com" />
+
+            <label for="login-password">Contraseña</label>
+            <input type="password" id="login-password" name="login-password" required placeholder="Contraseña" />
+
+            <button type="submit" class="btn">Entrar</button>
+        </form>
+
+        <!-- Formulario de register-->
+        <form id="register-form" novalidate>
+          <label for="reg-nombre">Nombre</label>
+          <input type="text" id="reg-nombre" name="reg-nombre" placeholder="Tu nombre" required />
+
+          <label for="reg-apellido">Apellido</label>
+          <input type="text" id="reg-apellido" name="reg-apellido" placeholder="Tu apellido" required />
+
+          <label for="reg-documento">Documento</label>
+          <input type="text" id="reg-documento" name="reg-documento" placeholder="Número de documento" required pattern="[0-9]+" title="Ingrese solo números" />
+
+          <label for="reg-email">Correo Electrónico</label>
+          <input type="email" id="reg-email" name="reg-email" placeholder="tuemail@ejemplo.com" required />
+
+          <label for="reg-telefono">Teléfono</label>
+          <input type="tel" id="reg-telefono" name="reg-telefono" placeholder="+54 9 11 1234-5678" required />
+
+          <label for="reg-password">Contraseña</label>
+          <input type="password" id="reg-password" name="reg-password" placeholder="Contraseña" required />
+
+          <label for="reg-password-conf">Confirmar Contraseña</label>
+          <input type="password" id="reg-password-conf" name="reg-password-conf" placeholder="Repite la contraseña" required />
+
+          <button type="submit" class="btn">Crear Cuenta</button>
+        </form>
+
+    </section>
+    
+    <footer>
+        <section>
+            <a href="https://www.instagram.com/mdmotors24/">Contactame aqui !</a>
+        </section>
+        <p>Copyright 2025</p>
+    </footer>
+
+    <script src="login-register.js"></script>
+
+
+</body>
+</html>
