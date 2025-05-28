@@ -13,8 +13,6 @@ body {
     justify-content: space-between; /* Para que el footer baje */
 }
   
-/* HEADER */
-
 .login1{
     margin: 1rem;
 }
@@ -53,87 +51,70 @@ header h1{
     transform: scale(1.1);
 }
 
-/* FORMULARIO */
-.container {
-    background: #364552;
+/** contenido **/
+
+.vehiculo{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.contenedorVehiculo {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem; /* Espaciado entre imagen e info */
+    align-items: flex-start; /* Alineación vertical */
     padding: 2rem;
-    border-radius: 10px;
-    margin-top: 2rem;
-    width: 400px;
-    transition: all 0.3s ease;
-    color:white;
-
 }
 
-.container:hover{
-    box-shadow: 0 0.1rem 0.4rem rgba(241, 237, 237, 0.3);
+.contenedorFoto img {
+    border-radius: 1rem;
+    padding:1rem;
+    border-radius: 2rem;
+    box-shadow: #364552;
+    display: flex;
+    flex-direction: column;
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: white;
-}
-
-.formulario-iniciosesión-registro {
-    width: calc(33.33% - 1rem); /* para dejar espacio para el gap */
+.contenedorInfo {
+    margin-top: 20px;
     background-color: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: #364552;
+}
+
+.extras{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2rem;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #ccc; /* color y grosor de la línea */
+  margin: 1rem 0;              /* espacio arriba y abajo */
+}
+
+  select {
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-    padding: 0.25rem 0;
-    transition: all 0.3s ease;
-}
-
-
-.tabs {
-  display: flex;
-  margin-bottom: 1rem;
-}
-.tab {
-  flex: 1;
-  padding: 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  background: #264653;
-  color: #f0f0f0;
-  border-radius: 5px 5px 0 0;
-}
-.tab.active {
-  background: #e9c46a;
-  color: #264653;
-}
-
-form {
-  display: none;
-  flex-direction: column;
-}
-form.active {
-  display: flex;
-}
-
-label {
-    margin: 0.5rem 0 0.2rem;
-}
-
-input {
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 0.8rem; /* <<< esto añade espacio entre inputs */
-}
-
-
-  .info-text {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 0.9rem;
-  }
-  .info-text a {
-    color: #e9c46a;
+    border: 1px solid #364552;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
     cursor: pointer;
-    text-decoration: none;
+    background-color: white;
+    color: #364552;
+    transition: border-color 0.3s ease;
   }
-
-
+  select:hover, select:focus {
+    border-color: #2a3a47;
+    outline: none;
+  }
 /* FOOTER */
 
 footer{
@@ -174,8 +155,8 @@ footer a:hover{
     display: block;
     margin: 1rem auto; /* centrado horizontal */
     padding: 0.75rem 1.5rem;
-    background-color: #ffffff;
-    color: 364552;
+    background-color: #364552;
+    color: white;
     border: none;
     border-radius: 2rem;
     font-size: 1rem;
