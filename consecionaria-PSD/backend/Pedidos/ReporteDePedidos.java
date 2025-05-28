@@ -1,10 +1,12 @@
 package backend.Pedidos;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-import backend.Estados.EstadoPedido;
+import backend.Estados.EstadoPosiblesPedido;
 import backend.MetodoDePago.MetodoDePago;
 
 public class ReporteDePedidos {
@@ -14,6 +16,19 @@ public class ReporteDePedidos {
         this.pedidos = pedidos;
     }
 
+    public void exportarReporteAArchivo(String nombreArchivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(nombreArchivo))) {
+            for (OrdenDeCompra orden : pedidos) {
+                writer.write("Pedido #" + orden.getNumeroPedido() + "," +
+                             orden.getFechaCreacion() + "," +
+                             orden.getEstado() + "," +
+                             orden.getCostoTotal() + "," +
+                             orden.getMetodoDePago().getNombre());
+                writer.newLine();
+            }
+        }
+    }
+
     public void generarReporteCompleto() {
         System.out.println("=== Reporte Completo de Pedidos ===");
         for (OrdenDeCompra orden : pedidos) {
@@ -21,33 +36,41 @@ public class ReporteDePedidos {
                 + " - Estado: " + orden.getEstado() 
                 + " - Fecha: " + orden.getFechaCreacion() 
                 + " - Total: $" + orden.getCostoTotal());
+            System.out.println("Concesionaria: " + orden.getNombreConsecionaria());
+            System.out.println("CUIT: " + orden.getCuitConsecionaria());
         }
     }
 
-    public void generarReportePorEstado() {
-        System.out.println("=== Reporte de Pedidos por Estado ===");
-        Map<EstadoPedido, List<OrdenDeCompra>> pedidosPorEstado = pedidos.stream()
-            .collect(Collectors.groupingBy(OrdenDeCompra::getEstado));
+    public void generarReportePorEstado(EstadoPosiblesPedido estadoBuscado) {
+        System.out.println("=== Reporte de Pedidos en Estado: " + estadoBuscado + " ===");
 
-        for (EstadoPedido estado : pedidosPorEstado.keySet()) {
-            System.out.println("Estado: " + estado);
-            for (OrdenDeCompra orden : pedidosPorEstado.get(estado)) {
-                System.out.println("  Pedido #" + orden.getNumeroPedido() 
+        pedidos.stream()
+            .filter(p -> p.getEstado().getEstado().equals(estadoBuscado))
+            .forEach(orden -> {
+                System.out.println("Pedido #" + orden.getNumeroPedido() 
                     + " - Fecha: " + orden.getFechaCreacion() 
                     + " - Total: $" + orden.getCostoTotal());
-            }
-        }
+                System.out.println("Concesionaria: " + orden.getNombreConsecionaria());
+                System.out.println("CUIT: " + orden.getCuitConsecionaria());
+            });
     }
 
-    public void generarReportePorFecha() {
-        System.out.println("=== Reporte de Pedidos por Fecha ===");
+
+    
+    public void generarReportePorFecha(Date desde, Date hasta) {
+        System.out.println("=== Reporte de Pedidos desde " + desde + " hasta " + hasta + " ===");
+
         pedidos.stream()
+            .filter(orden -> !orden.getFechaCreacion().before(desde) && !orden.getFechaCreacion().after(hasta))
             .sorted((o1, o2) -> o1.getFechaCreacion().compareTo(o2.getFechaCreacion()))
-            .forEach(orden -> System.out.println(
-                "Pedido #" + orden.getNumeroPedido()
-                + " - Fecha: " + orden.getFechaCreacion()
-                + " - Estado: " + orden.getEstado()
-                + " - Total: $" + orden.getCostoTotal()));
+            .forEach(orden -> {
+                System.out.println("Pedido #" + orden.getNumeroPedido()
+                    + " - Fecha: " + orden.getFechaCreacion()
+                    + " - Estado: " + orden.getEstado()
+                    + " - Total: $" + orden.getCostoTotal());
+                System.out.println("Concesionaria: " + orden.getNombreConsecionaria());
+                System.out.println("CUIT: " + orden.getCuitConsecionaria());
+            });
     }
 
     public int calcularTotalGeneral() {
@@ -76,6 +99,7 @@ public class ReporteDePedidos {
         System.out.println("Usuario: " + (orden.getUsuario() != null ? orden.getUsuario().getNombre() : "N/A"));
         System.out.println("Vehículo: " + (orden.getVehiculo() != null ? orden.getVehiculo().getModelo() : "N/A"));
         System.out.println("Concesionaria: " + orden.getNombreConsecionaria());
+        System.out.println("CUIT: " + orden.getCuitConsecionaria());
         // Si tienes más atributos que quieras mostrar, los agregamos acá
     }
 }

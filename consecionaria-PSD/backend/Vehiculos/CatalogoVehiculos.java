@@ -8,16 +8,11 @@ import backend.Vehiculos.TiposVehiculos.Vehiculo;
 // controlador de vehiculos
 
 public class CatalogoVehiculos {
-    private List<Vehiculo> vehiculos;
-
-    public CatalogoVehiculos() {
-        this.vehiculos = new ArrayList<>();
+    private List<Vehiculo> vehiculos = new ArrayList<>() ;
+    
+    public void agregarVehiculo(Vehiculo vehiculo) {
+        vehiculos.add(vehiculo);
     }
-
-public void agregarVehiculo(Vehiculo vehiculo) {
-    vehiculos.add(vehiculo);
-}
-
 
     public void eliminarVehiculo(Vehiculo vehiculo) {
         vehiculos.remove(vehiculo);
