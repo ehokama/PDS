@@ -2,6 +2,7 @@ package com.example.demo.models.Ordenes;
 
 import java.sql.Date;
 
+import com.example.demo.models.Usuarios.Usuario;
 import com.example.demo.models.Vehiculos.Vehiculo;
 
 
@@ -24,6 +25,10 @@ public class OrdenDeCompra {
 
     private Date fecha;
     private double total;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_dni", referencedColumnName = "dni")
+    private Usuario usuario;
 
  
     public OrdenDeCompra() {}
@@ -67,6 +72,14 @@ public class OrdenDeCompra {
 
     public void setTotal() {
         this.total = vehiculo.calcularPrecioFinal();
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 
     

@@ -36,7 +36,7 @@ public class UsuarioController {
     }
 
     @CrossOrigin(origins = "http://127.0.0.1:5500")
-@PostMapping("/api/usuarios/login")
+    @PostMapping("/api/usuarios/login")
     public ResponseEntity<Usuario> login(@RequestBody Map<String, String> loginData) {
         System.out.println("Datos recibidos: " + loginData);
         String correo = loginData.get("correo");
@@ -58,7 +58,7 @@ public class UsuarioController {
 
 
 
-
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/api/usuarios")
     public List<Usuario> obtenerUsuarios(){
         return repositorio.findAll();   

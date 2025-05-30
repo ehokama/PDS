@@ -38,7 +38,6 @@ function mostrarError404() {
   `;
 }
 
-
 function actualizarDatos(vehiculo) {
   document.getElementById('imagenVehiculo').src = vehiculo.imagenUrl || '';
   document.getElementById('marcaVehiculo').textContent = vehiculo.marca || '';
@@ -60,47 +59,47 @@ confirmarBtn.addEventListener("click", evento => {
 
 
 
-
-
-
-
-
-
-/** CREACION DE LA ORDEN */
-async function crearOrdenCompra() {
-  const orden = {
-    vehiculo: {
-      patente: "ABC123"
-    },
-    vendedor: {
-      dni: "12345678"
-    },
-    cliente: {
-      dni: "87654321"
-    },
-    metodoDePago: {
-      id: 1
-    }
+let crearOrdenCompra = async () => {
+  let campos = {
+  "estadoOrden": "EN_PROCESO",
+  "fecha": "",
+  "total": 35000.0,
+  "vehiculo": {
+    "tipo": "Camioneta",
+    "patente": "AG345LN"
+  },
+  "usuario": {
+    "tipo": "Cliente",
+    "dni":"465" 
+  }
   };
 
-  try {
-    const respuesta = await fetch('http://localhost:8080/ordenes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(orden)
-    });
 
-    if (!respuesta.ok) {
-      throw new Error(`Error al crear la orden: ${respuesta.statusText}`);
+  const peticion = await fetch("http://localhost:8080/api/ordenes", {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(campos)
+  });
+
+  //puedes hacer que salga un pop up que indice que la orden se creo exitosamente y si no se crea que aparezca error al crear la orden?
+  try {
+    if (!peticion.ok) {
+      throw new Error(`Error en la creación de la orden. Código: ${peticion.status}`);
     }
 
-    const data = await respuesta.json();
-    console.log("Orden creada exitosamente:", data);
-    alert("Orden creada correctamente");
+    alert("¡Orden de compra creada exitosamente!");
+    window.location.href = '../home/home.html';
+
   } catch (error) {
-    console.error("Hubo un problema al crear la orden:", error);
-    alert("Error al crear la orden");
+    console.error("Error al crear la orden de compra:", error);
+    alert("Ocurrió un error al crear la orden. Intenta nuevamente.");
   }
-}
+};
+
+
+
+
+

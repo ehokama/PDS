@@ -31,6 +31,14 @@
     }
   });
 
+
+
+
+
+
+
+
+
 // registro (conexion a controller con guardado en mssql)
 
 let registroBtn = document.getElementById("registerBtn");
@@ -39,10 +47,12 @@ registroBtn.addEventListener("click", evento=>{
     registrarUsuario();
 });
 
+
+
+
 let registrarUsuario = async()=>{
 
 let campos = {};
-
 campos.dni = document.getElementById("dni").value;
 campos.nombre = document.getElementById("nombre").value;
 campos.apellido = document.getElementById("apellido").value;
