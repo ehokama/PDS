@@ -41,6 +41,7 @@ public class Vehiculo {
     
     @Enumerated(EnumType.STRING)
     private EstadoVehiculo estado;
+    
     private int kilometraje; 
     private String imagenUrl;
 

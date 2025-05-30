@@ -108,7 +108,7 @@ loginForm.addEventListener('submit', async (e) => {
       }));
 
       alert('¡Inicio de sesión exitoso!');
-      window.location.href = '../home/homeGuest.html'; // Redireccionar al home
+      window.location.href = '../home/home.html'; // Redireccionar al home
     } else if (response.status === 401) {
       alert('Correo o contraseña incorrectos');
     } else {

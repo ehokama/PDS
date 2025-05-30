@@ -8,8 +8,8 @@ import jakarta.persistence.*;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_adicional", discriminatorType = DiscriminatorType.STRING)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
 
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
 @JsonSubTypes({
 @JsonSubTypes.Type(value = EquipamientoExtra.class, name = "EquipamientoExtra"),
 @JsonSubTypes.Type(value = Accesorio.class, name = "Accesorio"),
