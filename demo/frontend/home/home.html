@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>MD Motors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-content">
+      <a href="home.html" id="titulo" style="text-decoration: none; color: inherit;">
+        <h1>MD Motors</h1>
+      </a>
+      <button class="user-button" id="user-button">
+        <img class="user-logo" src="../img/user.png" alt="Usuario" />
+      </button>
+    </div>
+  </header>
+  <!-- HEADER -->
+
+  <main class="main-content">
+    <section class="container">
+      <!-- Vehículos renderizados por JS -->
+    </section>
+  </main>
+
+  <footer>
+    <section>
+      <a href="https://www.instagram.com/mdmotors24/" target="_blank">¡Contactame aquí!</a>
+    </section>
+    <p>&copy; 2025 MD Motors</p>
+  </footer>
+
+  <!-- Popup de login -->
+  <div id="login-popup" class="popup" style="display: none;">
+    <div class="popup-content">
+      <p>Para reservar primero debe iniciar sesión</p>
+      <button class="popup-login-btn" onclick="location.href='../login-register/login-register.html'">
+        Ir a Iniciar Sesión
+      </button>
+    </div>
+  </div>
+
+  <script src="home.js"></script>
+</body>
+</html>
