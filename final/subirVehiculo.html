@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir vehiculo al catalogo</title>
+</head>
+<body>
+    
+    <!-- HEADER -->
+
+    <!-- FORMULARIO -->
+    <h1>Formulario de Ingreso de Vehículo</h1>
+    <form id="formularioVehiculo">
+
+        <div class="vehiculoFormulario">
+            <label for="patente">Patente</label>
+            <input type="text" id="patente" name="patente" required /> <!-- id es el identificar dentro de html y css / name es el nombre que se asigna al valor que se envia  -->
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="marca">Marca</label>
+            <input type="text" id="marca" name="marca" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" name="modelo" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="año">Año</label>
+            <input type="number" id="año" name="año" required />
+        </div>
+
+        <div class="form-group">
+            <label for="kilometraje">Kilometraje (en km)</label>
+            <input type="number" id="kilometraje" name="kilometraje" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="tipoVehiculo">Tipo de Vehiculo:</label>
+            <select id="tipoVehiculo" name="tipoVehiculo">
+                <option value="Auto">Auto</option>
+                <option value="Moto">Moto</option>
+                <option value="Camioneta">Camioneta</option>
+                <option value="Camion">Camion</option>
+            </select>
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="color">Color:</label>
+            <select id="color" name="color">
+                <option value="BLANCO">Blanco</option>
+                <option value="ROJO">Rojo</option>
+                <option value="AZUL">Azul</option>
+                <option value="NEGRO">Negro</option>
+                <option value="GRIS">Gris</option>
+                <option value="NARANJA">Naranja</option>
+            </select>
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="numeroDeChasis">Número de Chasis</label>
+            <input type="number" id="numeroDeChasis" name="numeroDeChasis" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="numeroMotor">Número de Motor</label>
+            <input type="number" id="numeroMotor" name="numeroMotor" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+          <label for="precio">Precio (ARS)</label>
+          <input type="number" id="precio" name="precio" required />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label for="imagen">Imagen del Vehículo</label>
+            <input type="text" id="imagenUrl" name="imagenUrl" />
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label>Accesorios</label>
+            <div id="accesorioContainer" class="accesorio-list"></div>
+            <button type="button" id="agregarAccesorio">Agregar accesorio</button>
+        </div>
+
+        <div class="vehiculoFormulario">
+            <label>Equipamiento</label>
+            <div id="equipamientoExtraContainer" class="equipamiento-list"></div>
+            <button type="button" id="agregarEquipamientoExtra">Agregar equipamiento</button>
+        </div>
+
+        <button type="submit" id="submit">Subir</button>
+
+    </form>
+
+    <!-- FOOTER -->
+
+    
+    <!-- SCRIPT -->
+    <script src="subirVehiculo.js"></script>
+
+</body>
+</html>

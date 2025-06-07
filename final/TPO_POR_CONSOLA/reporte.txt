@@ -1,0 +1,1 @@
+ID: 32 | Fecha: 2025-06-06T13:58:42.778788700 | UltimoEstadoArea: EstadoPedido [numeroPedido=null, finalizado=true, fechaInicio=2025-06-06T13:58:43.037206, fechaFinalizacion=2025-06-06T13:58:43.123332800, areaResponsable=Areas.Seguimiento@65b54208] | UltimoEstadoArea: Ordenes.State.Pendiente@2f2c9b19
