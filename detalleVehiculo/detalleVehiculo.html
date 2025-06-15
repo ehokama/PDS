@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title id="tituloPestaña"></title>
+    <link rel="stylesheet" href="detalleVehiculo.css" />
+</head>
+<body>
+
+
+  <section class="vehiculo" id="vehiculo-detalle">
+    <div class="contenedorVehiculo">
+
+
+
+      <div class="columnaIzq">
+
+        <div class="contenedorFoto">
+          <img class="foto" id="imagenUrl" src="" alt="Imagen del vehículo" />
+        </div>
+        <div class="extras">
+          <h2>Información Básica:</h2>
+          <p>Marca: <span id="marcaVehiculo"></span></p>
+          <p>Modelo: <span id="modeloVehiculo"></span></p>
+          <p>Kilometraje: <span id="kilometrajeVehiculo"></span> km</p>
+          <p>Precio: $<span id="precioVehiculo"></span></p>
+        </div>
+        <div class="extras">
+          <div class="accesorios">
+            <h2>Accesorios</h2>
+            <label><input type="checkbox" name="accesorio" value="portaequipaje_techo"> Portaequipaje de techo</label>
+          </div>
+          <div>
+          <h2>Garantía Extendida:</h2>
+          <label for="miSelectGarantia">Seleccioná una opción (Predeterminada es de 0 meses):</label>
+          <select id="miSelectGarantia" name="miSelectGarantia">
+            <option value="opcion0">Sin Garantía (0 meses): $0</option>
+            <option value="opcion1">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
+            <option value="opcion2">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
+            <option value="opcion3">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
+          </select>
+          <p id="mensajeGarantia"></p>  <!-- Para mostrar el mensaje -->
+          </div>
+          <div>
+            <h2>Método de pago:</h2>
+            <label for="miSelectMetodoDePago">Seleccioná una opción (Predeterminada es Contado):</label>
+            <select id="miSelectMetodoDePago" name="miSelectMetodoDePago">
+              <option value="opcion1">Contado</option>
+              <option value="opcion2">Transferencia</option>
+              <option value="opcion3">Tarjeta de Crédito</option>     
+            </select>
+            <p id="mensajeMetodoPago"></p>  <!-- Para mostrar el mensaje -->
+          </div>
+          <div>
+            <h2>Datos de Facturación:</h2>
+            <form id="facturacion-form" novalidate method = "POST">
+              <label for="nombreCompleto">Nombre</label>
+              <input type="text" id="nombreCompleto" name="nombreCompleto" placeholder="Tu nombre completo" required />
+              <label for="cuit">CUIT</label>
+              <input type="text" id="cuit" name="cuit" placeholder="Tu CUIT/CUIL" required />
+              <label for="direccion">Dirección</label>
+              <input type="text" id="direccion" name="direccion" placeholder="Tu dirección completa" required />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="columnaDer">
+        <h1 id="tituloVehiculo"></h1>
+        <p id="detalleUbicacion"></p>
+        <hr />
+        <p>Precio contado: <strong>$<span id="precioContado"></span></strong></p>
+        <hr />
+        <button class="btn" id="confirmarBtn">Confirmar</button>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <script src="detalleVehiculo.js"></script>
+</body>
+</html>

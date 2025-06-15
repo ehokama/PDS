@@ -2,6 +2,7 @@ package com.example.ConsecionariaPDS.controllers;
 
 import java.util.List;
 
+import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,16 @@ public class VehiculoController {
     public ResponseEntity<List<Vehiculo>> obtenerVehiculos() {
         List<Vehiculo> lista = repositorio.findAll();
         return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
+    @GetMapping("/{patente}")
+    public ResponseEntity<Vehiculo> obtenerVehiculo(@PathVariable String patente){
+        Optional<Vehiculo> opt = repositorio.findById(patente);  
+        if(opt.isEmpty()){
+            return ResponseEntity.badRequest().build();
+        }else{
+            return ResponseEntity.ok(opt.get());
+        }
     }
 
 }  

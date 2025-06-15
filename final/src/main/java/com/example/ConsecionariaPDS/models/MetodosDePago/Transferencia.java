@@ -1,7 +1,11 @@
 package com.example.ConsecionariaPDS.models.MetodosDePago;
 
-public class Transferencia extends MetodoDePago {
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+@Entity
+@DiscriminatorValue("Transferencia")
+public class Transferencia extends MetodoDePago {
 
     public Transferencia() {
         super("Transferencia bancaria", "TRANSFERENCIA", 0);

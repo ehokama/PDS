@@ -4,11 +4,18 @@ import com.example.ConsecionariaPDS.models.Areas.Handler.IAreaHandler;
 import com.example.ConsecionariaPDS.models.Areas.Observer.IAreaObserver;
 import com.example.ConsecionariaPDS.models.Ordenes.OrdenDeCompra;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.*;
+
 
 // Ventas → Cobranzas → Impuestos → Embarque → Logística → Entrega → Seguimiento
 // Las areas tambien implementan el Singleton aparte del Observer y del Chain of Responsability
+
+@Entity
+@DiscriminatorValue("Entrega")
 public class Entrega extends Area implements IAreaHandler, IAreaObserver {
     private static Entrega instancia = null;
+    @Transient
     private IAreaHandler siguienteHandler;
 
     private Entrega() {

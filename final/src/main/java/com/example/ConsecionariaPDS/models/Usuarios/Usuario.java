@@ -1,7 +1,29 @@
 package com.example.ConsecionariaPDS.models.Usuarios;
 
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import jakarta.persistence.*;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="rol_usuario")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "rol_usuario"
+)
+
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Cliente.class, name = "Cliente"),
+    @JsonSubTypes.Type(value = Vendedor.class, name = "Vendedor"),
+    @JsonSubTypes.Type(value = Administrador.class, name = "Administrador"),
+})
+
 public abstract class Usuario {
+    @Id
     private String dni;
+    
     private String nombre;
     private String password;
     private String correo;
@@ -15,6 +37,8 @@ public abstract class Usuario {
         this.correo = correo;
         this.apellido = apellido;
         this.telefono = telefono;
+    }
+    public Usuario() {
     }
 
     public String getDni() {

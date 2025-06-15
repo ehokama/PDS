@@ -15,32 +15,54 @@ import com.example.ConsecionariaPDS.models.Ordenes.State.StateOrden;
 import com.example.ConsecionariaPDS.models.Usuarios.Usuario;
 import com.example.ConsecionariaPDS.models.Vehiculos.Entidades.Vehiculo;
 
+import jakarta.persistence.*;
+
 
 
 // no implemente el memento en el historial de estadopedido ya que no se pedia la capacidad de deshacer/revertir/restaurar estados en la consigna, sino que unicamente es una lista de copias inmutables
 
-
+@Entity
 public class OrdenDeCompra implements ISubject{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numeroDeOrden;
-
+    
+    @ManyToOne
     private Usuario comprador;
+    @ManyToOne
     private Usuario vendedor;
+
     private LocalDateTime fechaCreacion;
 
+    @ManyToOne  
     private Vehiculo vehiculo;
+
+    @ManyToOne
     private MetodoDePago metodoDePago;
 
+    @Embedded
     private DatosDeFacturacion datosFacturacion;
-
+    
+    @OneToOne
+    @JoinColumn(name = "area_actual")
     private Area areaActual;
+
+    @Transient
     private List<IAreaObserver>observadores;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private EstadoAreaPedido estadoAreaActual;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EstadoAreaPedido> historialDeEstados;
+    
+    @Transient
     private StateOrden stateOrden;
+
 
     private String nombreConsecionaria;
     private String cuitConsecionaria;
-
     private double costoTotal;
 
     public void agregarEstadoAlHistorial() {

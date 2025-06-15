@@ -98,7 +98,7 @@ subirVehiculoBtn.addEventListener("click",() => {
         año: document.getElementById("año").value,
         color: document.getElementById("color").value,
         kilometraje: document.getElementById("kilometraje").value,
-        numeroDeChasis: document.getElementById("numeroDeChasis").value,
+        numeroChasis: document.getElementById("numeroChasis").value,
         numeroMotor: document.getElementById("numeroMotor").value,
         precio: document.getElementById("precio").value,
         imagenUrl: document.getElementById("imagenUrl").value,

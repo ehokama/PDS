@@ -55,6 +55,7 @@ public abstract class Vehiculo implements IVehiculoBuilder{
     private VehiculoEstado vehiculoEstado;
     
     private String tipoEstado;  
+    private String imagenUrl;
 
     public  Vehiculo(){
     }
@@ -200,6 +201,14 @@ public abstract class Vehiculo implements IVehiculoBuilder{
 
     public void setTipoEstado(String tipoEstado) {
         this.tipoEstado = tipoEstado;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 
 

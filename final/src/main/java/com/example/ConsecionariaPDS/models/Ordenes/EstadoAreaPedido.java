@@ -4,14 +4,30 @@ import java.time.LocalDateTime;
 
 import com.example.ConsecionariaPDS.models.Areas.Area;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 
 //estado específico de procesamiento o flujo interno del pedido: en qué área está, cuándo inició y finalizó, si está finalizado o no.
 
+
+@Entity
 public class EstadoAreaPedido {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private Long numeroPedido;
     private boolean finalizado;
     private LocalDateTime fechaInicio;
     private LocalDateTime fechaFinalizacion; 
+
+    @OneToOne
+    @JoinColumn(name = "area_responsable_id")
     private Area areaResponsable;
     
     public EstadoAreaPedido(Area areaResponsable) {
