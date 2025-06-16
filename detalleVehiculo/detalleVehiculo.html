@@ -29,16 +29,16 @@
         <div class="extras">
           <div class="accesorios">
             <h2>Accesorios</h2>
-            <label><input type="checkbox" name="accesorio" value="portaequipaje_techo"> Portaequipaje de techo</label>
+            <p>Portaequipaje de techo <span id="accesorio"></span></p>
           </div>
           <div>
           <h2>Garantía Extendida:</h2>
           <label for="miSelectGarantia">Seleccioná una opción (Predeterminada es de 0 meses):</label>
           <select id="miSelectGarantia" name="miSelectGarantia">
-            <option value="opcion0">Sin Garantía (0 meses): $0</option>
-            <option value="opcion1">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
-            <option value="opcion2">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
-            <option value="opcion3">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
+            <option value="sin">Sin Garantía (0 meses): $0</option>
+            <option value="plata">Garantía Plata (6 meses): $300.000 ($50.000/mes)</option>
+            <option value="oro">Garantía Oro (9 meses): $405.000 ($45.000/mes)</option>
+            <option value="platino">Garantía Platino (12 meses): $540.000 ($45.000/mes)</option>     
           </select>
           <p id="mensajeGarantia"></p>  <!-- Para mostrar el mensaje -->
           </div>
@@ -80,6 +80,6 @@
 
 
 
-  <script src="detalleVehiculo.js"></script>
+  <script src="detalleVehiculo.js" defer></script>
 </body>
 </html>

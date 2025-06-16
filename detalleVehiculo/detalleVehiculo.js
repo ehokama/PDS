@@ -34,8 +34,7 @@ window.onload = async function () {
   }
 
   try {
-    const response = await fetch(`http://127.0.0.1:8080/vehiculos/${patente}`);
-
+    const response = await fetch(`http://localhost:8080/vehiculos/${patente}`);
     if (response.status === 404) {
       mostrarError404();
       return;
@@ -62,57 +61,82 @@ window.onload = async function () {
 
 
 
+document.getElementById("confirmarBtn").addEventListener("click", confirmarOrden);
 
-
-
-
-
-
-
-// datos de la orden a enviar
-
-
-const nuevaOrden = {
-    tipo_vehiculo: document.getElementById("tipoVehiculo").value,
-    patente: document.getElementById("patente").value,
-    marca: document.getElementById("marca").value,
-    modelo: document.getElementById("modelo").value,
-    año: document.getElementById("año").value,
-    color: document.getElementById("color").value,
-    kilometraje: document.getElementById("kilometraje").value,
-    numeroChasis: document.getElementById("numeroChasis").value,
-    numeroMotor: document.getElementById("numeroMotor").value,
-    precio: document.getElementById("precio").value,
-    imagenUrl: document.getElementById("imagenUrl").value,
-    adicionales: [],
-    tipoEstado : "Disponible",
-};
-
-
-// Función para enviar la orden
-function enviarOrden(orden) {
-  fetch('http://localhost:8080/ordenes', {
-    method: 'POST',
+async function enviarOrden(nuevaOrden) {
+  const response = await fetch("http://localhost:8080/ordenes", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
-    body: JSON.stringify(orden)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Error HTTP: ${response.status}`);
-    }
-    return response.json(); // parsea el JSON de respuesta
-  })
-  .then(data => {
-    console.log('Orden creada:', data);
-    alert('Orden creada con éxito, ID: ' + data.id);
-  })
-  .catch(error => {
-    console.error('Error al crear la orden:', error);
-    alert('Error al crear la orden: ' + error.message);
+    body: JSON.stringify(nuevaOrden)
   });
+
+  if (!response.ok) {
+    throw new Error("Error al crear la orden");
+  }
 }
 
-// Ejemplo de llamada
-enviarOrden(nuevaOrden);
+async function confirmarOrden() {
+  const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'));
+  if (!usuarioLogueado || !usuarioLogueado.dni) {
+    alert("No hay usuario logueado. Iniciá sesión para continuar.");
+    return;
+  }
+
+  const garantias = {
+    sin: { nombre: "Sin Garantía", descripcion: "0 meses", precio: 0 },
+    plata: { nombre: "Garantía Plata", descripcion: "6 meses", precio: 300000 },
+    oro: { nombre: "Garantía Oro", descripcion: "9 meses", precio: 405000 },
+    platino: { nombre: "Garantía Platino", descripcion: "12 meses", precio: 540000 }
+  };
+
+  const selectGarantia = document.getElementById("miSelectGarantia");
+  const opcionSeleccionada = selectGarantia.value;
+  const garantiaSeleccionada = garantias[opcionSeleccionada];
+
+  const patenteVehiculo = new URLSearchParams(window.location.search).get('patente');
+
+  const nuevaOrden = {
+    metodoPago: document.getElementById("miSelectMetodoDePago").value,
+    nombreCompleto: document.getElementById("nombreCompleto").value,
+    cuit: document.getElementById("cuit").value,
+    direccion: document.getElementById("direccion").value,
+    vendedorDni: "12345678",  // <-- poner un valor fijo de prueba (después lo arreglamos)
+    vehiculoPatente: patenteVehiculo,
+    compradorDni: usuarioLogueado.dni,
+  };
+
+  try {
+    await enviarOrden(nuevaOrden);
+
+    const responseVehiculo = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`);
+    if (!responseVehiculo.ok) throw new Error("Vehículo no encontrado");
+    
+    const vehiculo = await responseVehiculo.json();
+
+    vehiculo.adicionales.push({
+      tipo: "GarantiaExtendida",
+      nombre: garantiaSeleccionada.nombre,
+      descripcion: garantiaSeleccionada.descripcion,
+      precio: garantiaSeleccionada.precio
+    });
+
+    vehiculo.tipoEstado = "Vendido";
+
+    const responseUpdate = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(vehiculo)
+    });
+
+    if (!responseUpdate.ok) throw new Error("Error al actualizar el vehículo");
+
+    const data = await responseUpdate.json();
+    console.log("Vehículo actualizado correctamente:", data);
+    alert("Orden confirmada y garantía registrada.");
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Hubo un error: " + error.message);
+  }
+}

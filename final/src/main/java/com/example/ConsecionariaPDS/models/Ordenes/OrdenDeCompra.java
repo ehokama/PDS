@@ -36,6 +36,7 @@ public class OrdenDeCompra implements ISubject{
     private LocalDateTime fechaCreacion;
 
     @ManyToOne  
+    @JoinColumn(name = "vehiculo_patente") 
     private Vehiculo vehiculo;
 
     @ManyToOne
@@ -90,6 +91,63 @@ public class OrdenDeCompra implements ISubject{
         this.areaActual = Ventas.getInstancia();
         this.stateOrden = new Pendiente(this);
 
+    }
+
+    
+
+    public OrdenDeCompra() {
+    }
+
+    public void setNumeroDeOrden(int numeroDeOrden) {
+        this.numeroDeOrden = numeroDeOrden;
+    }
+
+    public void setComprador(Usuario comprador) {
+        this.comprador = comprador;
+    }
+
+    public void setVendedor(Usuario vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public void setMetodoDePago(MetodoDePago metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }
+
+    public void setDatosFacturacion(DatosDeFacturacion datosFacturacion) {
+        this.datosFacturacion = datosFacturacion;
+    }
+
+    public List<IAreaObserver> getObservadores() {
+        return observadores;
+    }
+
+    public void setObservadores(List<IAreaObserver> observadores) {
+        this.observadores = observadores;
+    }
+
+    public void setEstadoAreaActual(EstadoAreaPedido estadoAreaActual) {
+        this.estadoAreaActual = estadoAreaActual;
+    }
+
+    public void setHistorialDeEstados(List<EstadoAreaPedido> historialDeEstados) {
+        this.historialDeEstados = historialDeEstados;
+    }
+
+    public void setNombreConsecionaria(String nombreConsecionaria) {
+        this.nombreConsecionaria = nombreConsecionaria;
+    }
+
+    public void setCuitConsecionaria(String cuitConsecionaria) {
+        this.cuitConsecionaria = cuitConsecionaria;
+    }
+
+    public void setCostoTotal(double costoTotal) {
+        this.costoTotal = costoTotal;
     }
 
     @Override
@@ -170,6 +228,9 @@ public class OrdenDeCompra implements ISubject{
         return vehiculo;
     }
 
+    public String getPatenteVehiculo(){
+        return vehiculo.getPatente();
+    }
 
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;

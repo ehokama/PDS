@@ -27,7 +27,7 @@ public class FacadeConsecionaria {
     public FacadeConsecionaria() { //harcodeamos esta parte
         matias = new Vendedor("46231522", "Matias", "corsita123", "mdcacia@gmail.com", "Cacia", "1156723467");
         ivo = new Cliente("46567898", "Ivo", "zeus123", "ivillar9@gmail.com", "Villar", "1132156809");
-        facturacionIvo = new DatosDeFacturacion(ivo, "20-46567898-5", "Larrea 2343, Quilmes");
+        facturacionIvo = new DatosDeFacturacion("Ivo Villar Andres", "20-46567898-5", "Larrea 2343, Quilmes");
 
         usuarios.añadirCliente("46567898", "Ivo", "zeus123", "ivillar9@gmail.com", "Villar", "1132156809");
         usuarios.añadirVendedor("46231522", "Matias", "corsita123", "mdcacia@gmail.com", "Cacia", "1156723467");

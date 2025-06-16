@@ -1,6 +1,5 @@
 package com.example.ConsecionariaPDS.models.Ordenes;
 
-import com.example.ConsecionariaPDS.models.Usuarios.Usuario;
 
 import jakarta.persistence.*;
 
@@ -16,8 +15,8 @@ public class DatosDeFacturacion {
     public DatosDeFacturacion() {
     }
 
-    public DatosDeFacturacion(Usuario comprador, String cuit, String direccion) { //se debería ingresar cuando se quiere reservar el pedido
-        this.nombreCompleto = comprador.getNombre() + comprador.getApellido();
+    public DatosDeFacturacion(String nombreCompleto, String cuit, String direccion) { //se debería ingresar cuando se quiere reservar el pedido
+        this.nombreCompleto = nombreCompleto;
         this.cuit = cuit;
         this.direccion = direccion;
     }

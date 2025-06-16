@@ -30,7 +30,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> datos) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> datos) {    
         String correo = datos.get("correo");
         String password = datos.get("password");
     
@@ -41,5 +41,6 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
         }
     }
+
 
 }
