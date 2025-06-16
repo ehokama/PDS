@@ -10,6 +10,7 @@ import com.example.ConsecionariaPDS.models.Ordenes.OrdenDeCompraDTO;
 import com.example.ConsecionariaPDS.models.Usuarios.Usuario;
 import com.example.ConsecionariaPDS.models.Vehiculos.Entidades.Vehiculo;
 import com.example.ConsecionariaPDS.models.MetodosDePago.MetodoDePago;
+import com.example.ConsecionariaPDS.models.MetodosDePago.Transferencia;
 import com.example.ConsecionariaPDS.repositories.OrdenDeCompraRepositorio;
 import com.example.ConsecionariaPDS.repositories.UsuarioRepositorio;
 import com.example.ConsecionariaPDS.repositories.VehiculoRepositorio;
@@ -50,9 +51,6 @@ public class OrdenDeCompraController {
             Usuario vendedor = usuarioRepositorio.findByDni(dto.getDniVendedor())
                 .orElseThrow(() -> new RuntimeException("Vendedor no encontrado"));
 
-            // Buscar método de pago
-            MetodoDePago metodoPago = metodoPagoRepositorio.findById(dto.getMetodoDePagoId())
-                .orElseThrow(() -> new RuntimeException("Método de pago no encontrado"));
 
             // Crear datos de facturación
             DatosDeFacturacion datosFacturacion = new DatosDeFacturacion(
@@ -61,14 +59,16 @@ public class OrdenDeCompraController {
                 dto.getDireccion()
             );
 
+            MetodoDePago metodo1 = new Transferencia();
+
             // Crear nueva orden de compra
             OrdenDeCompra orden = new OrdenDeCompra(
                 0, // numeroDeOrden, si es autogenerado puede pasarse 0 o no pasarse
                 vehiculo,
                 vendedor,
                 comprador,
-                datosFacturacion,
-                metodoPago
+                datosFacturacion, 
+                metodo1
             );
 
             // Guardar orden

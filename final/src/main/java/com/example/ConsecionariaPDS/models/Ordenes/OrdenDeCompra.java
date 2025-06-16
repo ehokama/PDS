@@ -45,7 +45,7 @@ public class OrdenDeCompra implements ISubject{
     @Embedded
     private DatosDeFacturacion datosFacturacion;
     
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "area_actual")
     private Area areaActual;
 
