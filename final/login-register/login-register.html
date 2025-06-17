@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="login-register.css">
+    <title>Inicio de Sesion</title>
 </head>
 <body>
 
@@ -12,8 +13,8 @@
         <h2>Concesionaria</h2>
 
         <div class="tabs">
-          <div class="tab active" id="tab-login">Iniciar Sesión</div>
-          <div class="tab" id="tab-register">Registrarse</div>
+            <div class="tab active" id="tab-login">Iniciar Sesión</div>
+            <div class="tab" id="tab-register">Registrarse</div>
         </div>
 
         <!-- Formulario de login-->
@@ -30,29 +31,29 @@
         <!-- Formulario de registro-->
         <form id="register-form" novalidate method = "POST">
 
-        <label for="regNombre">Nombre</label>
-        <input type="text" id="nombre" name="regNombre" placeholder="Tu nombre" required />
-        
-        <label for="regApellido">Apellido</label>
-        <input type="text" id="apellido" name="regApellido" placeholder="Tu apellido" required />
+            <label for="regNombre">Nombre</label>
+            <input type="text" id="nombre" name="regNombre" placeholder="Tu nombre" required />
+            
+            <label for="regApellido">Apellido</label>
+            <input type="text" id="apellido" name="regApellido" placeholder="Tu apellido" required />
 
-        <label for="regDocumento">Documento</label>
-        <input type="text" id="dni" name="regDocumento" placeholder="Número de documento" required pattern="[0-9]+" title="Ingrese solo números" />
+            <label for="regDocumento">Documento</label>
+            <input type="text" id="dni" name="regDocumento" placeholder="Número de documento" required pattern="[0-9]+" title="Ingrese solo números" />
 
-        <label for="regEmail">Correo Electrónico</label>
-        <input type="email" id="correo" name="regEmail" placeholder="tuemail@ejemplo.com" required />
+            <label for="regEmail">Correo Electrónico</label>
+            <input type="email" id="correo" name="regEmail" placeholder="tuemail@ejemplo.com" required />
 
-        <label for="regTelefono">Teléfono</label>
-        <input type="tel" id="telefono" name="regTelefono" placeholder="+54 9 11 1234-5678" required />
+            <label for="regTelefono">Teléfono</label>
+            <input type="tel" id="telefono" name="regTelefono" placeholder="+54 9 11 1234-5678" required />
 
-        <label for="regPassword">Contraseña</label>
-        <input type="password" id="password" name="regPassword" placeholder="Contraseña" required />
+            <label for="regPassword">Contraseña</label>
+            <input type="password" id="password" name="regPassword" placeholder="Contraseña" required />
 
-        <label for="regPasswordConf">Confirmar Contraseña</label>
-        <input type="password" id="regPasswordConf" name="regPasswordConf" placeholder="Repite la contraseña" required />
+            <label for="regPasswordConf">Confirmar Contraseña</label>
+            <input type="password" id="regPasswordConf" name="regPasswordConf" placeholder="Repite la contraseña" required />
 
-        <button type="submit" class="btn" id="registerBtn">Crear Cuenta</button>
-    </form>
+            <button type="submit" class="btn" id="registerBtn">Crear Cuenta</button>
+        </form>
     </section>
 
     <script src="login-register.js"></script>
