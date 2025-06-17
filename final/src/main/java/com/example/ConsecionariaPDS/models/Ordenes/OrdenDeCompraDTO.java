@@ -1,29 +1,18 @@
 package com.example.ConsecionariaPDS.models.Ordenes;
 
-import java.time.LocalDateTime;
 
 public class OrdenDeCompraDTO {
 
-    private int numeroDeOrden; // opcional, para crear se suele omitir o dejar 0
     private String compradorDni;
     private String vendedorDni;
     private String patenteVehiculo;
-    private int metodoDePagoId;
+    private String metodoDePagoId;
     private String nombreCompleto;
     private String cuit;
     private String direccion;
 
-    private LocalDateTime fechaCreacion; // puede omitirse si se genera automático
-
     // getters y setters
 
-    public int getNumeroDeOrden() {
-        return numeroDeOrden;
-    }
-
-    public void setNumeroDeOrden(int numeroDeOrden) {
-        this.numeroDeOrden = numeroDeOrden;
-    }
 
     public String getCompradorDni() {
         return compradorDni;
@@ -33,13 +22,14 @@ public class OrdenDeCompraDTO {
         this.compradorDni = compradorDni;
     }
 
-    public String getDniVendedor() {
-        return vendedorDni;
-    }
-
     public void setVendedorDni(String vendedorDni) {
         this.vendedorDni = vendedorDni;
     }
+
+    public String getVendedorDni() {
+        return vendedorDni;
+    }
+
 
     public String getPatenteVehiculo() {
         return patenteVehiculo;
@@ -49,11 +39,11 @@ public class OrdenDeCompraDTO {
         this.patenteVehiculo = patenteVehiculo;
     }
 
-    public int getMetodoDePagoId() {
+    public String getMetodoDePagoId() {
         return metodoDePagoId;
     }
 
-    public void setMetodoDePagoId(int metodoDePagoId) {
+    public void setMetodoDePagoId(String metodoDePagoId) {
         this.metodoDePagoId = metodoDePagoId;
     }
 
@@ -81,11 +71,5 @@ public class OrdenDeCompraDTO {
         this.direccion = direccion;
     }
 
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
 }

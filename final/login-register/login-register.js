@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       // Crear el objeto usuario  
       const usuario = {
-        rol_usuario: 'Cliente',
+        rol_usuario: 'Vendedor',
         nombre: nombre,
         apellido: apellido,
         dni: dni,

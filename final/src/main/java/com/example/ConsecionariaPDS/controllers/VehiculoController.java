@@ -46,22 +46,15 @@ public class VehiculoController {
         }
     }
 
-        @PutMapping("/{patente}")
-    public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable String patente, @RequestBody Vehiculo vehiculoActualizado) {
-        Optional<Vehiculo> vehiculoOpt = repositorio.findByPatente(patente);
-        if (!vehiculoOpt.isPresent()) {
+    @PutMapping("/{patente}")
+    public ResponseEntity<Vehiculo> actualizarVehiculo(@PathVariable String patente, @RequestBody Vehiculo vehiculo) {
+        Optional<Vehiculo> optional = repositorio.findByPatente(patente);
+        if (optional.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        Vehiculo vehiculoExistente = vehiculoOpt.get();
-
-        // Actualizás los campos que quieras (en este caso, la lista de adicionales)
-        vehiculoExistente.setAdicionales(vehiculoActualizado.getAdicionales());
-
-        // Si querés actualizar otros campos, hacelo acá...
-
-        repositorio.save(vehiculoExistente);
-        return ResponseEntity.ok(vehiculoExistente);
+        repositorio.save(vehiculo);
+        return ResponseEntity.ok(vehiculo);
     }
 
 }  

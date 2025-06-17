@@ -44,14 +44,13 @@ public class OrdenDeCompra implements ISubject{
     @Embedded
     private DatosDeFacturacion datosFacturacion;
     
-    @OneToOne
-    @JoinColumn(name = "area_actual")
+    @Transient
     private Area areaActual;
 
     @Transient
     private List<IAreaObserver>observadores;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @Transient
     private EstadoAreaPedido estadoAreaActual;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -79,7 +78,8 @@ public class OrdenDeCompra implements ISubject{
         this.vendedor= vendedor;
         this.comprador = comprador;
         this.datosFacturacion = datosFacturacion;
-
+        this.metodoDePago = metodoDePago;
+        
         this.nombreConsecionaria = Consecionaria.getNombre() ;
         this.cuitConsecionaria = Consecionaria.getCuit() ;
 

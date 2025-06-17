@@ -104,16 +104,14 @@ async function confirmarOrden() {
   const opcionSeleccionada = selectGarantia.value;
   const garantiaSeleccionada = garantias[opcionSeleccionada];
 
-  const metodoPagoId = parseInt(document.getElementById("miSelectMetodoDePago").value);
-
   const patenteVehiculo = new URLSearchParams(window.location.search).get('patente');
 
   const nuevaOrden = {
     numeroDeOrden: 0, // opcional si el backend lo ignora o lo autogenera
     compradorDni: usuarioLogueado.dni,
-    vendedorDni: "12345678", // valor temporal de prueba
+    vendedorDni: "45123456", // valor temporal de prueba
     patenteVehiculo: patenteVehiculo,
-    metodoDePagoId: metodoPagoId,
+    metodoDePagoId: document.getElementById("miSelectMetodoDePago").value,
     nombreCompleto: document.getElementById("nombreCompleto").value,
     cuit: document.getElementById("cuit").value,
     direccion: document.getElementById("direccion").value,
