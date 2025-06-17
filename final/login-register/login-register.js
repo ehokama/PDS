@@ -90,3 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+document.getElementById("tab-login").addEventListener("click", () => {
+  document.getElementById("login-form").classList.add("active");
+  document.getElementById("register-form").classList.remove("active");
+  document.getElementById("tab-login").classList.add("active");
+  document.getElementById("tab-register").classList.remove("active");
+});
+
+document.getElementById("tab-register").addEventListener("click", () => {
+  document.getElementById("register-form").classList.add("active");
+  document.getElementById("login-form").classList.remove("active");
+  document.getElementById("tab-register").classList.add("active");
+  document.getElementById("tab-login").classList.remove("active");
+});

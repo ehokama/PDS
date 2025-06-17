@@ -1,0 +1,104 @@
+/* Fondo general */
+body {
+  background-color: #1a2238;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.2rem;
+}
+
+/* Contenedor principal */
+.container {
+  background-color: #2c3454;
+  padding: 3rem;
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  width: 95%;
+  max-width: 600px;
+}
+
+/* Título */
+h2 {
+  text-align: center;
+  color: #fcd34d;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 3px solid #fcd34d;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 1rem;
+  cursor: pointer;
+  color: #ccc;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.tab.active {
+  color: #fcd34d;
+  border-bottom: 4px solid #fcd34d;
+}
+
+/* Formularios */
+form {
+  display: none;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+form.active {
+  display: flex;
+}
+
+/* Inputs y labels */
+label {
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+input {
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid #fcd34d;
+  background-color: #1f2937;
+  color: white;
+  font-size: 1.1rem;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+input:focus {
+  outline: 3px solid #fcd34d;
+}
+
+/* Botón */
+.btn {
+  background-color: #fcd34d;
+  color: #1a2238;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #eab308;
+}
