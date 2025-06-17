@@ -1,42 +1,41 @@
-/* Fondo y tipografía global */
 body {
   background-color: #1a2238;
   color: #ffffff;
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 2rem;
-  box-sizing: border-box;
+  padding: 3rem;
+  font-size: 1.1rem;
 }
 
-/* Contenedor general */
 .vehiculo {
   display: flex;
   justify-content: center;
-  align-items: start;
-  max-width: 1200px;
+  align-items: flex-start;
+  max-width: 1300px;
   margin: auto;
 }
 
-/* División en columnas */
 .contenedorVehiculo {
   display: flex;
   flex-direction: row;
   background-color: #2c3454;
-  border-radius: 12px;
+  border-radius: 16px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   width: 100%;
   gap: 2rem;
 }
 
-/* Columna izquierda */
-.columnaIzq {
+.columnaIzq,
+.columnaDer {
   flex: 1;
-  padding: 2rem;
-  border-right: 1px solid #fcd34d;
+  padding: 2.5rem;
 }
 
-/* Imagen del vehículo */
+.columnaIzq {
+  border-right: 2px solid #fcd34d;
+}
+
 .contenedorFoto {
   text-align: center;
   margin-bottom: 2rem;
@@ -44,79 +43,48 @@ body {
 
 .foto {
   max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 2px solid #fcd34d;
+  border-radius: 12px;
+  border: 3px solid #fcd34d;
 }
 
-/* Secciones de datos */
 .extras {
   margin-top: 2rem;
-  padding: 1rem;
+  padding: 1.5rem;
   background-color: #1f2937;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .extras h2 {
   color: #fcd34d;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
 .extras p {
-  margin: 0.3rem 0;
+  margin: 0.5rem 0;
 }
 
-/* Accesorios */
 .accesorios {
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-/* Selects */
-select {
+select, input {
   width: 100%;
-  padding: 0.6rem;
-  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  border-radius: 8px;
   background-color: #111827;
   color: white;
-  border: 1px solid #fcd34d;
+  border: 2px solid #fcd34d;
+  font-size: 1.1rem;
   margin-top: 0.5rem;
 }
 
+input:focus,
 select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #fcd34d55;
-}
-
-/* Inputs */
-input {
-  width: 100%;
-  padding: 0.4rem 0.6rem; /* más compacto */
-  border-radius: 6px;
-  border: 1px solid #fcd34d; /* borde amarillo visible siempre */
-  background-color: #111827;
-  color: white;
-  font-size: 0.95rem;
-  margin-top: 0.4rem;
-  margin-bottom: 1rem;
-  box-sizing: border-box;
+  outline: 3px solid #fcd34d;
 }
 
 input::placeholder {
   color: #9ca3af;
-}
-
-input:focus {
-  outline: 2px solid #fcd34d;
-}
-
-
-/* Columna derecha */
-.columnaDer {
-  flex: 1;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
 }
 
 .columnaDer h1 {
@@ -125,49 +93,26 @@ input:focus {
   font-size: 2rem;
 }
 
-.columnaDer p {
-  margin-bottom: 1rem;
-}
-
-/* Líneas divisorias */
 hr {
   border: none;
   border-top: 1px solid #fcd34d44;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
-/* Botón de confirmación */
 .btn {
   background-color: #fcd34d;
   color: #1a2238;
   border: none;
-  padding: 0.9rem;
-  border-radius: 8px;
+  padding: 1.2rem;
+  border-radius: 10px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: auto;
 }
 
 .btn:hover {
   background-color: #eab308;
-}
-
-/* Responsividad */
-@media (max-width: 992px) {
-  .contenedorVehiculo {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .columnaIzq {
-    border-right: none;
-    border-bottom: 1px solid #fcd34d;
-  }
-
-  .btn {
-    margin-top: 1rem;
-  }
 }

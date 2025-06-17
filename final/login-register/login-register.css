@@ -8,51 +8,54 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  font-size: 1.2rem;
 }
 
 /* Contenedor principal */
 .container {
   background-color: #2c3454;
-  padding: 2rem;
-  border-radius: 12px;
+  padding: 3rem;
+  border-radius: 16px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-  width: 90%;
-  max-width: 500px;
+  width: 95%;
+  max-width: 600px;
 }
 
 /* Título */
 h2 {
   text-align: center;
   color: #fcd34d;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
 /* Tabs */
 .tabs {
   display: flex;
   justify-content: space-around;
-  border-bottom: 2px solid #fcd34d;
-  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #fcd34d;
+  margin-bottom: 2rem;
 }
 
 .tab {
-  padding: 0.7rem;
+  padding: 1rem;
   cursor: pointer;
   color: #ccc;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s ease;
+  font-size: 1.1rem;
 }
 
 .tab.active {
   color: #fcd34d;
-  border-bottom: 3px solid #fcd34d;
+  border-bottom: 4px solid #fcd34d;
 }
 
 /* Formularios */
 form {
   display: none;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 form.active {
@@ -63,15 +66,16 @@ form.active {
 label {
   font-weight: 600;
   color: #fff;
+  font-size: 1.2rem;
 }
 
 input {
-  padding: 0.7rem;
-  border-radius: 6px;
-  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid #fcd34d;
   background-color: #1f2937;
   color: white;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 input::placeholder {
@@ -79,7 +83,7 @@ input::placeholder {
 }
 
 input:focus {
-  outline: 2px solid #fcd34d;
+  outline: 3px solid #fcd34d;
 }
 
 /* Botón */
@@ -87,11 +91,11 @@ input:focus {
   background-color: #fcd34d;
   color: #1a2238;
   border: none;
-  padding: 0.8rem;
-  border-radius: 8px;
+  padding: 1.2rem;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.2rem;
   transition: background-color 0.3s ease;
 }
 
