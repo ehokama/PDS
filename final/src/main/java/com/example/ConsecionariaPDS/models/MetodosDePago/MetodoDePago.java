@@ -7,12 +7,12 @@ import jakarta.persistence.*;
 
 @Entity	
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "metodo_pago")
+@DiscriminatorColumn(name = "metodo_pago", discriminatorType = DiscriminatorType.STRING)
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "metodo_pago"
 )
+
 @JsonSubTypes({
     @JsonSubTypes.Type(value = Contado.class, name = "Contado"),
     @JsonSubTypes.Type(value = Tarjeta.class, name = "Tarjeta"),
@@ -23,13 +23,12 @@ import jakarta.persistence.*;
 public abstract class MetodoDePago {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String nombre;
     private String descripcion;
     private double recargoPorcentaje;
 
-    
 
     public MetodoDePago() {
     }

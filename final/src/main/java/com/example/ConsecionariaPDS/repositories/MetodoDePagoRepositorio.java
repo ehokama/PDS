@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import com.example.ConsecionariaPDS.models.MetodosDePago.MetodoDePago;
 
 @Repository
-public interface MetodoDePagoRepositorio extends JpaRepository<MetodoDePago, Integer> {
+public interface MetodoDePagoRepositorio extends JpaRepository<MetodoDePago, String> {
 }

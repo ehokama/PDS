@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 public class Contado extends MetodoDePago {
 
     public Contado() {
-        super("Pago en efectivo de contado","CONTADO", 0);
     }
 
 

@@ -61,6 +61,12 @@ window.onload = async function () {
 
 
 
+
+
+
+
+
+
 document.getElementById("confirmarBtn").addEventListener("click", confirmarOrden);
 
 async function enviarOrden(nuevaOrden) {
@@ -73,8 +79,11 @@ async function enviarOrden(nuevaOrden) {
   });
 
   if (!response.ok) {
-    throw new Error("Error al crear la orden");
+    const errorText = await response.text(); // para ver el mensaje desde el backend
+    throw new Error("Error al crear la orden: " + errorText);
   }
+
+  return await response.json();
 }
 
 async function confirmarOrden() {
@@ -95,24 +104,30 @@ async function confirmarOrden() {
   const opcionSeleccionada = selectGarantia.value;
   const garantiaSeleccionada = garantias[opcionSeleccionada];
 
+  const metodoPagoId = parseInt(document.getElementById("miSelectMetodoDePago").value);
+
   const patenteVehiculo = new URLSearchParams(window.location.search).get('patente');
 
   const nuevaOrden = {
-    metodoPago: document.getElementById("miSelectMetodoDePago").value,
+    numeroDeOrden: 0, // opcional si el backend lo ignora o lo autogenera
+    compradorDni: usuarioLogueado.dni,
+    vendedorDni: "12345678", // valor temporal de prueba
+    patenteVehiculo: patenteVehiculo,
+    metodoDePagoId: metodoPagoId,
     nombreCompleto: document.getElementById("nombreCompleto").value,
     cuit: document.getElementById("cuit").value,
     direccion: document.getElementById("direccion").value,
-    vendedorDni: "12345678",  // <-- poner un valor fijo de prueba (después lo arreglamos)
-    vehiculoPatente: patenteVehiculo,
-    compradorDni: usuarioLogueado.dni,
+    // fechaCreacion se puede omitir si se autogenera en el backend
   };
+
+  console.log("Enviando orden:", JSON.stringify(nuevaOrden, null, 2));
 
   try {
     await enviarOrden(nuevaOrden);
 
     const responseVehiculo = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`);
     if (!responseVehiculo.ok) throw new Error("Vehículo no encontrado");
-    
+
     const vehiculo = await responseVehiculo.json();
 
     vehiculo.adicionales.push({
@@ -140,3 +155,6 @@ async function confirmarOrden() {
     alert("Hubo un error: " + error.message);
   }
 }
+
+
+
