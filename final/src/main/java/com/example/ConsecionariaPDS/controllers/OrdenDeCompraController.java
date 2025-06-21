@@ -1,5 +1,7 @@
 package com.example.ConsecionariaPDS.controllers;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,4 +67,11 @@ public ResponseEntity<?> crearOrden(@RequestBody OrdenDeCompraDTO dto) {
         return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
+
+    @GetMapping //este método se ejecuta cuando alguien hace un GET a la URL establecida en RequestMapping
+    public ResponseEntity<List<OrdenDeCompra>> obtenerOrdenes() {
+        List<OrdenDeCompra> lista = ordenRepositorio.findAll();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
 }

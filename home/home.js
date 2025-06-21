@@ -46,14 +46,16 @@ let listarVehiculos = async () => {
 
 
     // Función para manejar reserva de vehículo
-    function handleReservar(event) {
-      const estaLogueado = localStorage.getItem('usuarioLogueado');
-      if (estaLogueado) {
-        const patenteVehiculo = event.target.getAttribute('data-patente');
-        window.location.href = `../detalleVehiculo/detalleVehiculo.html?patente=${patenteVehiculo}`;
-      } else {
-        document.getElementById('login-popup').style.display = 'flex';
-      }
-    }
+function handleReservar(event) {
+  console.log('Botón reservar clickeado');
+  const estaLogueado = localStorage.getItem('usuario');
+  if (estaLogueado) {
+    const patenteVehiculo = event.target.getAttribute('data-patente');
+    window.location.href = `../detalleVehiculo/detalleVehiculo.html?patente=${patenteVehiculo}`;
+  } else {
+    // Aquí MOSTRAS el popup SOLO si NO está logueado
+    alert('Debes iniciar sesión para reservar un vehiculo.');
+  }
+}
 
 };

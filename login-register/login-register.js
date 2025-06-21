@@ -82,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Login exitoso');
             // Guardar usuario en localStorage
             localStorage.setItem('usuario', JSON.stringify(usuario));
-            // Redirigir a otra página (por ejemplo: dashboard)
-            window.location.href = 'dashboard.html';
+            window.location.href = '../home/home.html';
         })
         .catch(error => {
             alert(error.message);
