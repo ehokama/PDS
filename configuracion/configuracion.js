@@ -1,38 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const estaLogueado = localStorage.getItem('usuario');
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-  if (!estaLogueado) {
-    // Si NO está logueado, redirige al login
+  if (!usuario) {
+    // Si no está logueado, redirige al login
     window.location.href = "../login-register/login-register.html";
-    return; // para evitar que se ejecute lo demás
+    return;
   }
 
-  // Si está logueado, mostrar botones (ya están en el HTML, solo queda el listener para cerrar sesión)
+  const rol = usuario.rol_usuario.toLowerCase();
+
+  // Mostrar solo "Cerrar Sesión" si no es administrador
+  if (rol !== "administrador") {
+    const btnAgregar = document.querySelector(".btn-agregar");
+    const btnReportes = document.querySelector(".btn-reportes");
+
+    if (btnAgregar) btnAgregar.style.display = "none";
+    if (btnReportes) btnReportes.style.display = "none";
+  }
+
+  // El botón de cerrar sesión siempre está disponible
   const btnCerrar = document.querySelector(".btn-cerrar");
-
-  btnCerrar.addEventListener("click", (e) => {
-    e.preventDefault(); // evitar la navegación automática
-
-    localStorage.clear();
-    sessionStorage.clear();
-
-    window.location.href = "../login-register/login-register.html";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btnCerrar = document.querySelector(".btn-cerrar");
-
-  btnCerrar.addEventListener("click", (e) => {
-    e.preventDefault(); // evitar el link automático
-
-    // Limpiar almacenamiento local o sessionStorage según uses
-    localStorage.clear();      // borra todo lo almacenado localmente
-    sessionStorage.clear();    // borra todo lo almacenado en sesión
-
-
-    // Luego redirigir a página de login o inicio
-    window.location.href = "http://127.0.0.1:5500/login-register/login-register.html"; 
-    // Cambia esta URL a la de tu página de login real
-  });
+  if (btnCerrar) {
+    btnCerrar.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "../login-register/login-register.html";
+    });
+  }
 });

@@ -1,5 +1,6 @@
 package com.example.ConsecionariaPDS.controllers;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{dni}")
-    public ResponseEntity<Usuario> obtenerVehiculo(@PathVariable String dni){
+    public ResponseEntity<Usuario> obtenerUsuario(@PathVariable String dni){
         Optional<Usuario> opt = repositorio.findById(dni);  
         if(opt.isEmpty()){
             return ResponseEntity.badRequest().build();
@@ -54,4 +55,11 @@ public class UsuarioController {
             return ResponseEntity.ok(opt.get());
         }
     }
+
+    @GetMapping //este método se ejecuta cuando alguien hace un GET a la URL establecida en RequestMapping
+    public ResponseEntity<List<Usuario>> obtenerUsuarios() {
+        List<Usuario> lista = repositorio.findAll();
+        return new ResponseEntity<>(lista, HttpStatus.OK);
+    }
+
 }
