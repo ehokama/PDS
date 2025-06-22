@@ -1,31 +1,36 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const usuario = JSON.parse(localStorage.getItem('usuario'));
+try {
+  await enviarOrden(nuevaOrden);
 
-  if (!usuario) {
-    // Si no está logueado, redirige al login
-    window.location.href = "../login-register/login-register.html";
-    return;
-  }
+  const responseVehiculo = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`);
+  if (!responseVehiculo.ok) throw new Error("Vehículo no encontrado");
 
-  const rol = usuario.rol_usuario.toLowerCase();
+  const vehiculo = await responseVehiculo.json();
 
-  // Mostrar solo "Cerrar Sesión" si no es administrador
-  if (rol !== "administrador") {
-    const btnAgregar = document.querySelector(".btn-agregar");
-    const btnReportes = document.querySelector(".btn-reportes");
+  vehiculo.adicionales.push({
+    tipo: "GarantiaExtendida",
+    nombre: garantiaSeleccionada.nombre,
+    descripcion: garantiaSeleccionada.descripcion,
+    precio: garantiaSeleccionada.precio
+  });
 
-    if (btnAgregar) btnAgregar.style.display = "none";
-    if (btnReportes) btnReportes.style.display = "none";
-  }
+  vehiculo.tipoEstado = "Vendido";
 
-  // El botón de cerrar sesión siempre está disponible
-  const btnCerrar = document.querySelector(".btn-cerrar");
-  if (btnCerrar) {
-    btnCerrar.addEventListener("click", (e) => {
-      e.preventDefault();
-      localStorage.clear();
-      sessionStorage.clear();
-      window.location.href = "../login-register/login-register.html";
-    });
-  }
-});
+  const responseUpdate = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(vehiculo)
+  });
+
+  if (!responseUpdate.ok) throw new Error("Error al actualizar el vehículo");
+
+  const data = await responseUpdate.json();
+  console.log("Vehículo actualizado correctamente:", data);
+  alert("Orden confirmada y garantía registrada.");
+
+  // 🔁 Redirigir al home después de éxito
+  window.location.href = "http://127.0.0.1:5500/home/home.html";
+
+} catch (error) {
+  console.error("Error:", error);
+  alert("Hubo un error: " + error.message);
+}

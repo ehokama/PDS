@@ -2,7 +2,6 @@ window.onload = function () {
   listarVehiculos();
 };
 
-
 // Función para listar vehículos desde la API
 let listarVehiculos = async () => {
   try {
@@ -17,7 +16,10 @@ let listarVehiculos = async () => {
 
     let catalogoVehiculos = "";
 
-    for (let vehiculo of vehiculos) {
+    // Filtrar vehículos cuyo tipoEstado sea "Disponible"
+    const vehiculosDisponibles = vehiculos.filter(v => v.tipoEstado === "Disponible");
+
+    for (let vehiculo of vehiculosDisponibles) {
       let contenidoPost = `
         <article class="post">
           <h2>${vehiculo.marca} ${vehiculo.modelo}</h2>
@@ -31,7 +33,6 @@ let listarVehiculos = async () => {
       catalogoVehiculos += contenidoPost;
     }
 
-    // Insertar HTML en el "<section class="vehiculo">" dentro delcatalogo
     document.querySelector(".vehiculo").innerHTML = catalogoVehiculos;
 
     // si le das a "reservar" te redirige al detalle del vehiculo
@@ -40,12 +41,12 @@ let listarVehiculos = async () => {
         btn.addEventListener('click', handleReservar);
     });
 
-    } catch (error) {
-        console.error("Error al listar vehículos:", error);
-    }
+  } catch (error) {
+    console.error("Error al listar vehículos:", error);
+  }
+};
 
-
-    // Función para manejar reserva de vehículo
+// Función para manejar reserva de vehículo
 function handleReservar(event) {
   console.log('Botón reservar clickeado');
   const estaLogueado = localStorage.getItem('usuario');
@@ -53,9 +54,6 @@ function handleReservar(event) {
     const patenteVehiculo = event.target.getAttribute('data-patente');
     window.location.href = `../detalleVehiculo/detalleVehiculo.html?patente=${patenteVehiculo}`;
   } else {
-    // Aquí MOSTRAS el popup SOLO si NO está logueado
-    alert('Debes iniciar sesión para reservar un vehiculo.');
+    alert('Debes iniciar sesión para reservar un vehículo.');
   }
 }
-
-};
