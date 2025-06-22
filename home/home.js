@@ -16,10 +16,21 @@ let listarVehiculos = async () => {
 
     let catalogoVehiculos = "";
 
-    // Filtrar vehículos cuyo tipoEstado sea "Disponible"
-    const vehiculosDisponibles = vehiculos.filter(v => v.tipoEstado === "Disponible");
+    // Obtener el rol del usuario desde localStorage
+    const usuarioJSON = localStorage.getItem('usuario');
+    let rolUsuario = null;
 
-    for (let vehiculo of vehiculosDisponibles) {
+    if (usuarioJSON) {
+      const usuario = JSON.parse(usuarioJSON);
+      rolUsuario = usuario.rol_usuario; // <- adaptado a tu estructura
+    }
+
+    // Filtrar vehículos si el rol no es "Administrador"
+    const vehiculosAMostrar = (rolUsuario === "Administrador")
+      ? vehiculos
+      : vehiculos.filter(v => v.tipoEstado === "Disponible");
+
+    for (let vehiculo of vehiculosAMostrar) {
       let contenidoPost = `
         <article class="post">
           <h2>${vehiculo.marca} ${vehiculo.modelo}</h2>
@@ -38,7 +49,7 @@ let listarVehiculos = async () => {
     // si le das a "reservar" te redirige al detalle del vehiculo
     const reservarBtns = document.querySelectorAll('.reservar-btn');
     reservarBtns.forEach(btn => {
-        btn.addEventListener('click', handleReservar);
+      btn.addEventListener('click', handleReservar);
     });
 
   } catch (error) {

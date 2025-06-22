@@ -1,36 +1,34 @@
-try {
-  await enviarOrden(nuevaOrden);
 
-  const responseVehiculo = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`);
-  if (!responseVehiculo.ok) throw new Error("Vehículo no encontrado");
 
-  const vehiculo = await responseVehiculo.json();
 
-  vehiculo.adicionales.push({
-    tipo: "GarantiaExtendida",
-    nombre: garantiaSeleccionada.nombre,
-    descripcion: garantiaSeleccionada.descripcion,
-    precio: garantiaSeleccionada.precio
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  const usuario = JSON.parse(localStorage.getItem('usuario'));
 
-  vehiculo.tipoEstado = "Vendido";
+  if (!usuario) {
+    // Si no está logueado, redirige al login
+    window.location.href = "../login-register/login-register.html";
+    return;
+  }
 
-  const responseUpdate = await fetch(`http://localhost:8080/vehiculos/${patenteVehiculo}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(vehiculo)
-  });
+  const rol = usuario.rol_usuario.toLowerCase();
 
-  if (!responseUpdate.ok) throw new Error("Error al actualizar el vehículo");
+  // Mostrar solo "Cerrar Sesión" si no es administrador
+  if (rol !== "administrador") {
+    const btnAgregar = document.querySelector(".btn-agregar");
+    const btnReportes = document.querySelector(".btn-reportes");
 
-  const data = await responseUpdate.json();
-  console.log("Vehículo actualizado correctamente:", data);
-  alert("Orden confirmada y garantía registrada.");
+    if (btnAgregar) btnAgregar.style.display = "none";
+    if (btnReportes) btnReportes.style.display = "none";
+  }
 
-  // 🔁 Redirigir al home después de éxito
-  window.location.href = "http://127.0.0.1:5500/home/home.html";
-
-} catch (error) {
-  console.error("Error:", error);
-  alert("Hubo un error: " + error.message);
-}
+  // El botón de cerrar sesión siempre está disponible
+  const btnCerrar = document.querySelector(".btn-cerrar");
+  if (btnCerrar) {
+    btnCerrar.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.href = "../login-register/login-register.html";
+    });
+  }
+});
