@@ -63,9 +63,8 @@ public class OrdenDeCompra implements ISubject{
         this.observadores = new ArrayList<>();
         this.historialDeEstados = new ArrayList<>();
         this.areaActual = Ventas.getInstancia();
-        this.estadoAreaActual  = new EstadoAreaPedido(areaActual);
+        this.estadoAreaActual  = new EstadoAreaPedido(numeroDeOrden, areaActual);
         this.stateOrden = new Pendiente(this);
-
     }
 
     @Override
@@ -160,7 +159,7 @@ public class OrdenDeCompra implements ISubject{
     }
 
 	public void reiniciarEstadoOrden(Area siguienteHandler) {
-		estadoAreaActual = new EstadoAreaPedido(siguienteHandler);
+		estadoAreaActual = new EstadoAreaPedido(numeroDeOrden, siguienteHandler);
 	}
 
     public StateOrden getStateOrden() {
