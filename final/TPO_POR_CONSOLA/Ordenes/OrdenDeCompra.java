@@ -62,8 +62,8 @@ public class OrdenDeCompra implements ISubject{
 
         this.observadores = new ArrayList<>();
         this.historialDeEstados = new ArrayList<>();
-        this.estadoAreaActual  = new EstadoAreaPedido(areaActual);
         this.areaActual = Ventas.getInstancia();
+        this.estadoAreaActual  = new EstadoAreaPedido(areaActual);
         this.stateOrden = new Pendiente(this);
 
     }
