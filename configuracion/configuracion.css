@@ -93,6 +93,16 @@ body {
       background-color: #eab308;
     }
 
+    .btn-historial {
+      background-color: #facc15;
+      color: #1a2238;
+    }
+
+    .btn-historial:hover {
+      background-color: #eab308;
+    }
+
+
     .main-footer {
       background-color: #111827;
       color: #d1d5db;
