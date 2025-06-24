@@ -39,7 +39,6 @@ let listarOrdenes = async () => {
           <p><strong>Total:</strong> $${orden.costoTotal.toLocaleString()}</p>
           <img src="${orden.vehiculo.imagenUrl}" alt="Imagen del vehículo">
           <br><br>
-          <button onclick='exportarOrden(${JSON.stringify(orden).replace(/'/g, "\\'")})'>Exportar en TXT</button>
         </article>
       `;
 

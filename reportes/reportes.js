@@ -37,7 +37,8 @@ for (let orden of ordenes) {
       <p><strong>Total:</strong> $${orden.costoTotal.toLocaleString()}</p>
       <img src="${orden.vehiculo.imagenUrl}" alt="Imagen del vehículo">
       <br><br>
-      <button onclick='exportarOrden(${JSON.stringify(orden).replace(/'/g, "\\'")})'>Exportar en TXT</button>
+      <button onclick='exportarOrdenTXT(${JSON.stringify(orden).replace(/'/g, "\\'")})'>Exportar en TXT</button>
+      <button onclick='exportarOrdenCSV(${JSON.stringify(orden).replace(/'/g, "\\'")})'>Exportar en CSV</button>
     </article>
   `;
 
@@ -50,8 +51,7 @@ for (let orden of ordenes) {
     console.error("Error al listar ordenes:", error);
   }
 };
-
-function exportarOrden(orden) {
+function exportarOrdenTXT(orden) {
   const contenido = JSON.stringify(orden, null, 2); // formateado
   const blob = new Blob([contenido], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
@@ -59,6 +59,39 @@ function exportarOrden(orden) {
   const link = document.createElement("a");
   link.href = url;
   link.download = `orden_${orden.numeroDeOrden}.txt`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+function exportarOrdenCSV(orden) {
+  // Encabezados y datos
+  const encabezados = [
+    "Número de Orden", "Comprador", "Vendedor", "Fecha", "Marca", "Modelo", "Año",
+    "Estado", "Método de Pago", "Costo Total"
+  ];
+
+  const fila = [
+    orden.numeroDeOrden,
+    `${orden.comprador.nombre} ${orden.comprador.apellido}`,
+    `${orden.vendedor.nombre} ${orden.vendedor.apellido}`,
+    orden.fechaCreacion.split("T")[0],
+    orden.vehiculo.marca,
+    orden.vehiculo.modelo,
+    orden.vehiculo.año,
+    orden.vehiculo.tipoEstado,
+    orden.metodoDePago ? orden.metodoDePago.nombre : "No especificado",
+    orden.costoTotal
+  ];
+
+  const contenido = `${encabezados.join(",")}\n${fila.map(valor => `"${valor}"`).join(",")}`;
+  const blob = new Blob([contenido], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `orden_${orden.numeroDeOrden}.csv`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
