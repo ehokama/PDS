@@ -2,10 +2,17 @@ package Ordenes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Areas.Area;
+import Areas.Cobranzas;
 import Areas.Consecionaria;
+import Areas.Embarque;
+import Areas.Entrega;
+import Areas.Impuestos;
+import Areas.Logistica;
+import Areas.Seguimiento;
 import Areas.Ventas;
 import Areas.Observer.IAreaObserver;
 import Areas.Observer.ISubject;
@@ -34,7 +41,7 @@ public class OrdenDeCompra implements ISubject{
     private List<IAreaObserver>observadores;
     private EstadoAreaPedido estadoAreaActual;
     private List<EstadoAreaPedido> historialDeEstados;
-    private StateOrden stateOrden;
+    private StateOrden stateOrden; // patron state
 
     private String nombreConsecionaria;
     private String cuitConsecionaria;
@@ -60,7 +67,7 @@ public class OrdenDeCompra implements ISubject{
 
         this.fechaCreacion = LocalDateTime.now();
 
-        this.observadores = new ArrayList<>();
+        this.observadores = new ArrayList<>(Arrays.asList(Ventas.getInstancia(), Cobranzas.getInstancia(), Impuestos.getInstancia(), Embarque.getInstancia(), Logistica.getInstancia(), Entrega.getInstancia(), Seguimiento.getInstancia()));
         this.historialDeEstados = new ArrayList<>();
         this.areaActual = Ventas.getInstancia();
         this.estadoAreaActual  = new EstadoAreaPedido(numeroDeOrden, areaActual);

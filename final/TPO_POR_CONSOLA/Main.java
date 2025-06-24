@@ -115,6 +115,7 @@ public class Main{
         double recargo = metodo.calcularRecargo(montoBase);
         double totalFinal = montoBase + recargo;
         System.out.println(totalFinal);
+        
         System.out.println("----------------------");
 
         //probando la creacion de una ordenDeCompra
@@ -134,11 +135,14 @@ public class Main{
 
         //probamos el historialDeEstados de la orden1
 
+        System.out.println("asdasd");
+    
         for (EstadoAreaPedido estado : orden1.getHistorialDeEstados()) {
             System.out.println(estado.toString());
         }
         
         //Probamos los reportes de ordenes
+        System.out.println("asdasd");
 
         List<OrdenDeCompra> lista1 = new ArrayList<>();
         lista1.add(orden1);

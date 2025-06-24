@@ -25,9 +25,9 @@ public class FacadeConsecionaria {
     FacadeReportes reportes = new FacadeReportes();
    
     public FacadeConsecionaria() { //harcodeamos esta parte
-        matias = new Vendedor("46231522", "Matias", "corsita123", "mdcacia@gmail.com", "Cacia", "1156723467");
-        ivo = new Cliente("46567898", "Ivo", "zeus123", "ivillar9@gmail.com", "Villar", "1132156809");
-        facturacionIvo = new DatosDeFacturacion(ivo, "20-46567898-5", "Larrea 2343, Quilmes");
+        matias = new Vendedor("46231522", "Matias", "123", "mdcacia@gmail.com", "Cacia", "1156723467");
+        profe = new Cliente("46567898", "Manuel Adrian", "123", "macaceres@gmail.com", "Caceres", "1132156809");
+        facturacionIvo = new DatosDeFacturacion(profe, "20-46567898-5", "Andres Baranda 2343, Quilmes");
 
         usuarios.añadirCliente("46567898", "Ivo", "zeus123", "ivillar9@gmail.com", "Villar", "1132156809");
         usuarios.añadirVendedor("46231522", "Matias", "corsita123", "mdcacia@gmail.com", "Cacia", "1156723467");
@@ -35,7 +35,7 @@ public class FacadeConsecionaria {
     }
     
     Usuario matias;
-    Usuario ivo;
+    Usuario profe;
     DatosDeFacturacion facturacionIvo;
 
     
@@ -59,7 +59,7 @@ public class FacadeConsecionaria {
                 metodo = new Contado();
                 break;
         }   // parte harcodeada con usuarios y adicionales
-        ordenes.crearOrdenDeCompra( ThreadLocalRandom.current().nextInt(1, 101), vehiculos.getVehiculo(patente), matias, ivo, facturacionIvo, metodo);
+        ordenes.crearOrdenDeCompra( ThreadLocalRandom.current().nextInt(1, 101), vehiculos.getVehiculo(patente), matias, profe, facturacionIvo, metodo);
     }
     
     public void eliminarOrdenDeCompra(OrdenDeCompra orden) {
@@ -84,7 +84,7 @@ public class FacadeConsecionaria {
     }
 
     public void mostrarOrdenesDeUsuario(){ // harcodeado
-        ordenes.mostrarOrdenesDeUsuario(ivo.getDni());
+        ordenes.mostrarOrdenesDeUsuario(profe.getDni());
     }
 
     // VEHICULOS

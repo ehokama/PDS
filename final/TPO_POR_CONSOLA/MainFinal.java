@@ -1,17 +1,12 @@
-package Vistas;
-import java.util.Arrays;
-import java.util.List;
+
+
 import java.util.Scanner;
 
 import Facades.FacadeConsecionaria;
-import Vehiculos.Builder.AutoBuilder;
-import Vehiculos.Builder.CamionetaBuilder;
-import Vehiculos.Caracteristicas.Accesorio;
-import Vehiculos.Caracteristicas.Color;
-import Vehiculos.Caracteristicas.ConfiguracionAdicional;
-import Vehiculos.Caracteristicas.EquipamentoExtra;
-import Vehiculos.Caracteristicas.GarantiaExtendida;
-import Vehiculos.Entidades.Auto;
+import Vistas.VistaAdministrador;
+import Vistas.VistaComprador;
+import Vistas.VistaVendedor;
+
 
 public class MainFinal {
     
