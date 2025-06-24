@@ -109,7 +109,7 @@ async function confirmarOrden() {
   const nuevaOrden = {
     numeroDeOrden: 0, // opcional si el backend lo ignora o lo autogenera
     compradorDni: usuarioLogueado.dni,
-    vendedorDni: "45123456", // valor temporal de prueba
+    vendedorDni: "40123456", // valor temporal de prueba
     patenteVehiculo: patenteVehiculo,
     metodoDePagoId: document.getElementById("miSelectMetodoDePago").value,
     nombreCompleto: document.getElementById("nombreCompleto").value,

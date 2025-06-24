@@ -16,7 +16,7 @@ public class VistaVendedor implements Vista {
         int opcion;
 
         do {
-            System.out.println("\n--- Menú Comprador ---");
+            System.out.println("\n--- Menú Vendedor ---");
             System.out.println("1 - Ver vehiculos disponibles");
             System.out.println("2 - Salir");
             System.out.print("Elegí una opción: ");
